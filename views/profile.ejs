@@ -19,10 +19,14 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
 			<li class="nav-item active">
-					<a class="nav-link" href="/profile">Profile <span class="sr-only">(current)</span></a>
+					<a class="nav-link" href="profile">Profile <span class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">Courses <span class="sr-only">(current)</span></a>
+					<% if(user.lecturer) { %>
+						<a class="nav-link" href="#" data-toggle="modal" data-target="#addCourse"> Create Course <span class="sr-only">(current)</span></a>
+					<%} else {%>
+						<a class="nav-link" href="/courses" data-toggle="modal" data-target="#addCourse" id="but"> Add Course <span class="sr-only">(current)</span></a>
+					<%}	%>
 			</li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
@@ -31,35 +35,61 @@
 		</div>
 	</nav>
 
-<div class="container">
+	<div class="container">
 
-	<div class="page-header text-center">
-		<h1><span class="fa fa-anchor"></span> Profile</h1>
-	</div>
+		<div class="page-header text-center">
+			<h1><span class="fa fa-anchor"></span> Profile</h1>
+		</div>
 
-	<div class="row">
+		<div class="row">
 
-		<!-- LOCAL INFORMATION -->
-		<div class="col-sm-6">
-			<div class="well">
-				<h3><span class="fa fa-user"></span> Local</h3>
+			<!-- LOCAL INFORMATION -->
+			<div class="col-sm-6">
+				<div class="well">
+					<h3><span class="fa fa-user"></span> Local</h3>
 
-					<p>
-						<strong>id</strong>: <%= user.id %><br>
-						<strong>username</strong>: <%= user.username %><br>
-						<!-- <strong>password</strong>: <%= user.password %> -->
-						<strong>email</strong>: <%= user.email %><br>
-						<strong>Course</strong>:
-						<% for(var i=0; i<course.length;i++){ %>						
-							<a class="btn btn-outline-primary" href=<%= "course/" + course[i].courseName %>><%= course[i].courseName %></a>
-						<%} %>
-					</p>
+						<p>
+							<strong>id</strong>: <%= user.id %><br>
+							<strong>username</strong>: <%= user.username %><br>
+							<!-- <strong>password</strong>: <%= user.password %> -->
+							<strong>email</strong>: <%= user.email %><br>
+							<strong>Course</strong>:
+							<% for(var i=0; i<course.length;i++){ %>						
+								<a class="btn btn-outline-primary" href=<%= "course/" + course[i].courseName %>><%= course[i].courseName %></a>
+							<%} %>
 
+						</p>
+
+				</div>
 			</div>
+
 		</div>
 
 	</div>
 
-</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="addCourse" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h5 class="modal-title" id="exampleModalLabel">Add Course</h5>
+			  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+			<div class="modal-body">
+					<strong>Course</strong>:
+					<% for(var i=0; i<course.length;i++){ %>						
+						<a class="btn btn-outline-primary" href=<%= "course/" + course[i].courseName %>><%= course[i].courseName %></a>
+					<%} %>
+
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+		  </div>
+		</div>
+	  </div>
 </body>
 </html>
