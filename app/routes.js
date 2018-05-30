@@ -72,6 +72,7 @@ module.exports = function(app, passport) {
 			if(err) throw err;
 			course= results;
 
+<<<<<<< HEAD
 			if(isEmpty(mycourses)) {
 				res.redirect('/profile');
 			} 
@@ -82,6 +83,8 @@ module.exports = function(app, passport) {
 		});	
 	});
 
+=======
+>>>>>>> 3477556084f74ead8d692dc8cbf50e2af6ef0f1f
 
 	// =====================================
 	// HOME PAGE (with login links) ========
