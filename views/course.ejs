@@ -5,7 +5,7 @@
     </tr>
     <% for(var i=0; i<course.length;i++){ %>
         <tr>
-            <td><%= course[i].courseName %></td>
+            <td> <a href="/courses/add/<%= course[i].COURSE_ID %>"><%= course[i].courseName %></a></td>
             <td><%= course[i].courseDescription %></td>
         </tr> 
     <%} %>

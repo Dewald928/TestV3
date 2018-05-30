@@ -23,12 +23,15 @@ module.exports = function(app, passport) {
     	});
 	});
 	
-	app.get('/courses/:id/add', function(req, res){
-		let sql = 'SELECT * FROM courses';
-    	let query = connection.query(sql, (err, results) => {
+	app.get('/courses/add/:id', function(req, res){
+		console.log(req.user.id);
+		let sql = 'INSERT INTO enrollment (STUDENT_ID, COURSE_ID) VALUES (?,?)';
+		let studentID = req.user.id;
+		let courseid = parseInt(req.params.id);
+    	let query = connection.query(sql,[studentID, courseid], (err, results) => {
         if(err) throw err;
 		console.log(results);
-        res.json(req.params);
+        res.json(results);
     	});
 	});
 	
@@ -40,7 +43,7 @@ module.exports = function(app, passport) {
 	// HOME PAGE (with login links) ========
 	// =====================================
 	app.get('/', function(req, res) {
-		res.render('login.ejs'); // load the index.ejs file
+		res.render('index.ejs'); // load the index.ejs file
 	});
 
 	// =====================================
