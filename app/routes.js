@@ -23,18 +23,42 @@ module.exports = function(app, passport) {
     	});
 	});
 	
+	//adds course to user
 	app.get('/courses/add/:id', function(req, res){
 		console.log(req.user.id);
 		let sql = 'INSERT INTO enrollment (STUDENT_ID, COURSE_ID) VALUES (?,?)';
 		let studentID = req.user.id;
 		let courseid = parseInt(req.params.id);
+		//*check if couse already added
     	let query = connection.query(sql,[studentID, courseid], (err, results) => {
         if(err) throw err;
 		console.log(results);
-        res.json(results);
+        res.redirect('/profile');
     	});
 	});
 	
+	//get new course
+	app.get('/courses/new', function(req,res){
+		console.log(req.user.lecturer);
+		if(req.user.lecturer < 0){
+			res.redirect('/profile');
+		} else {
+			res.render('courseCreate.ejs', { user: req.user });
+		};
+	});
+
+	//post add new course to db
+	app.post('/courses/new', function(req,res){
+		console.log(req.body);
+		let sql = 'INSERT INTO courses (courseName, courseDescription) VALUES (?,?)';
+		let courseName = req.body.courseName;
+		let courseDesc = req.body.courseDescription;
+    	let query = connection.query(sql,[courseName, courseDesc], (err, results) => {
+        if(err) throw err;
+        res.redirect('/profile');
+    	});
+	});
+
 
 
 	// =====================================
