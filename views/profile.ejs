@@ -29,7 +29,11 @@
 						<strong>username</strong>: <%= user.username %><br>
 						<strong>password</strong>: <%= user.password %>
 						<strong>email</strong>: <%= user.email %><br>
-						<strong>Course</strong>: <%= course.courseName %>
+						<strong>Course</strong>:
+						<% for(var i=0; i<course.length;i++){ %>
+									,								
+									<%= course[i].courseName %>
+						<%} %>
 					</p>
 
 			</div>

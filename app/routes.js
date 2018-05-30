@@ -17,9 +17,21 @@ module.exports = function(app, passport) {
     	let query = connection.query(sql, (err, results) => {
         if(err) throw err;
 		console.log(results);
-        res.json(results);
+			res.render('course.ejs', {
+				course : results //get courses for each user
+			});
     	});
 	});
+	
+	app.get('/courses/:id/add', function(req, res){
+		let sql = 'SELECT * FROM courses';
+    	let query = connection.query(sql, (err, results) => {
+        if(err) throw err;
+		console.log(results);
+        res.json(req.params);
+    	});
+	});
+	
 
 
 
@@ -82,10 +94,10 @@ module.exports = function(app, passport) {
 	// we will use route middleware to verify this (the isLoggedIn function)
 	app.get('/profile', isLoggedIn, function(req, res) {
 		var mycourses ={};
-		let sql = 'SELECT COURSE_NAME,COURSE_DESCRIPTION FROM courses,enrollment,users WHERE courses.COURSE_ID=enrollment.COURSE_ID and enrollment.STUDENT_ID = users.id and users.id = ?';
+		let sql = 'SELECT courseName,courseDescription FROM courses,enrollment,users WHERE courses.COURSE_ID=enrollment.COURSE_ID and enrollment.STUDENT_ID = users.id and users.id = ?';
     	let query = connection.query(sql,[req.user.id], (err, results) => {
 			if(err) throw err;
-			mycourses= results[0];
+			mycourses= results;
 
 			if(isEmpty(mycourses)) {
 				mycourses = "";
@@ -98,23 +110,23 @@ module.exports = function(app, passport) {
 		});			
 	});
 
-	app.get('/profile/:id', isLoggedIn, function(req, res) {
-		var mycourses ={};
-		let sql = 'SELECT courseName,courseDescription FROM courses,enrollments,users WHERE courses.COURSE_ID=enrollments.COURSE_ID and enrollments.STUDENT_ID = users.id and users.id = ?';
-    	let query = connection.query(sql,[req.user.id], (err, results) => {
-			if(err) throw err;
-			mycourses= results[0];
+	// app.get('/profile/:id', isLoggedIn, function(req, res) {
+	// 	var mycourses ={};
+	// 	let sql = 'SELECT courseName,courseDescription FROM courses,enrollment,users WHERE courses.COURSE_ID=enrollment.COURSE_ID and enrollments.STUDENT_ID = users.id and users.id = ?';
+    // 	let query = connection.query(sql,[req.user.id], (err, results) => {
+	// 		if(err) throw err;
+	// 		mycourses= results;
 
-			if(isEmpty(mycourses)) {
-				mycourses = "";
-			} 
-			console.log(mycourses);
-			res.render('profile.ejs', {
-				user : req.user, // get the user out of session and pass to template
-				course : mycourses //get courses for each user
-			});
-		});			
-	});
+	// 		if(isEmpty(mycourses)) {
+	// 			mycourses = "";
+	// 		} 
+	// 		console.log(mycourses);
+	// 		res.render('profile.ejs', {
+	// 			user : req.user, // get the user out of session and pass to template
+	// 			course : mycourses //get courses for each user
+	// 		});
+	// 	});			
+	// });
 
 	// =====================================
 	// LOGOUT ==============================
