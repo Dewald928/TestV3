@@ -66,25 +66,19 @@ module.exports = function(app, passport) {
 	app.get('/course/:courseName', function(req,res){
 		console.log(req.params.courseName);
 		//select course and it's corresponding lessons
-		var course = req.params.courseName;
-		let sql = 'SELECT LESSON_NAME, LESSON_DESCRIPTION, LESSON_MATERIAL FROM lessons,courses WHERE lessons.COURSE_FK = courses.COURSE_ID and courses.courseName = ?';
-    	let query = connection.query(sql,[course], (err, results) => {
+		let sql = 'SELECT LESSON_NAME, LESSON_DESCRIPTION, LESSON_MATERIAL FROM lessons,courses WHERE lessons.COURSE_FK = courses.COURSE_ID and courses.courseName = ? order by lessonNumber asc';
+    	let query = connection.query(sql,[req.params.courseName], (err, results) => {
 			if(err) throw err;
-			course= results;
-
-<<<<<<< HEAD
-			if(isEmpty(mycourses)) {
+			console.log(results);
+			if(isEmpty(results)) {
 				res.redirect('/profile');
-			} 
-			res.render('profile.ejs', {
-				user : req.user, // get the user out of session and pass to template
-				course : course //get courses for each user
-			});
+			} else {
+				res.json(results);
+			}
+			
 		});	
 	});
 
-=======
->>>>>>> 3477556084f74ead8d692dc8cbf50e2af6ef0f1f
 
 	// =====================================
 	// HOME PAGE (with login links) ========
