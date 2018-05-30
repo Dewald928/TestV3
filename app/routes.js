@@ -74,15 +74,30 @@ module.exports = function(app, passport) {
 		failureFlash : true // allow flash messages
 	}));
 
+
 	// =====================================
 	// PROFILE SECTION =========================
 	// =====================================
 	// we will want this protected so you have to be logged in to visit
 	// we will use route middleware to verify this (the isLoggedIn function)
 	app.get('/profile', isLoggedIn, function(req, res) {
-		res.render('profile.ejs', {
-			user : req.user // get the user out of session and pass to template
-		});
+		var mycourses ={};
+		let sql = 'SELECT courseName,courseDescription FROM courses,enrollment,users WHERE courses.idcourses=enrollment.courseID and enrollment.studentID = users.ID and users.ID = ?';
+    	let query = connection.query(sql,[req.user.id], (err, results) => {
+			if(err) throw err;
+			mycourses= results[0];
+
+			if(isEmpty(mycourses)) {
+				mycourses = "";
+			} else{
+				console.log(mycourses);
+			}
+			res.render('profile.ejs', {
+				user : req.user, // get the user out of session and pass to template
+				course : mycourses
+			});
+		});	
+		
 	});
 
 	// =====================================
@@ -93,6 +108,14 @@ module.exports = function(app, passport) {
 		res.redirect('/');
 	});
 };
+
+function isEmpty(obj) {
+	for(var key in obj) {
+		if(obj.hasOwnProperty(key))
+			return false;
+	}
+	return true;
+}
 
 // route middleware to make sure
 function isLoggedIn(req, res, next) {
