@@ -82,22 +82,38 @@ module.exports = function(app, passport) {
 	// we will use route middleware to verify this (the isLoggedIn function)
 	app.get('/profile', isLoggedIn, function(req, res) {
 		var mycourses ={};
-		let sql = 'SELECT courseName,courseDescription FROM courses,enrollment,users WHERE courses.idcourses=enrollment.courseID and enrollment.studentID = users.ID and users.ID = ?';
+		let sql = 'SELECT COURSE_NAME,COURSE_DESCRIPTION FROM courses,enrollment,users WHERE courses.COURSE_ID=enrollment.COURSE_ID and enrollment.STUDENT_ID = users.id and users.id = ?';
     	let query = connection.query(sql,[req.user.id], (err, results) => {
 			if(err) throw err;
 			mycourses= results[0];
 
 			if(isEmpty(mycourses)) {
 				mycourses = "";
-			} else{
-				console.log(mycourses);
-			}
+			} 
+			console.log(mycourses);
 			res.render('profile.ejs', {
 				user : req.user, // get the user out of session and pass to template
-				course : mycourses
+				course : mycourses //get courses for each user
 			});
-		});	
-		
+		});			
+	});
+
+	app.get('/profile/:id', isLoggedIn, function(req, res) {
+		var mycourses ={};
+		let sql = 'SELECT courseName,courseDescription FROM courses,enrollments,users WHERE courses.COURSE_ID=enrollments.COURSE_ID and enrollments.STUDENT_ID = users.id and users.id = ?';
+    	let query = connection.query(sql,[req.user.id], (err, results) => {
+			if(err) throw err;
+			mycourses= results[0];
+
+			if(isEmpty(mycourses)) {
+				mycourses = "";
+			} 
+			console.log(mycourses);
+			res.render('profile.ejs', {
+				user : req.user, // get the user out of session and pass to template
+				course : mycourses //get courses for each user
+			});
+		});			
 	});
 
 	// =====================================
