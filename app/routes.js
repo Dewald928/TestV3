@@ -43,11 +43,7 @@ module.exports = function(app, passport) {
 	// HOME PAGE (with login links) ========
 	// =====================================
 	app.get('/', function(req, res) {
-<<<<<<< HEAD
-		res.render('index.ejs'); // load the index.ejs file
-=======
 		res.render('login.ejs', { message: req.flash('loginMessage')}); // load the index.ejs file
->>>>>>> 2c2ff3f2a8720ab490243620a7860a0fbcb86fe4
 	});
 
 	// =====================================

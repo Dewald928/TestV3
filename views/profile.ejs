@@ -3,29 +3,38 @@
 <html>
 <head>
 	<title>TestV2</title>
+    <script src="/scripts/jquery-3.2.1.min.js"></script>
 	<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"> <!-- load bootstrap css -->
 	<link rel="stylesheet" href="/fonts/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css"><!-- load fontawesome -->
     
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
     <link rel="icon" href="images/raspberry.png" type="image/png">
 </head>
 <body>
 
-	<nav class="navbar sticky-top navbar-light bg-light">
-		<!-- <ul class="nav navbar-nav">
-			<li class="active"><a href="#">Home</a></li>
-			<li><a href="#">Page 1</a></li>
-			<li><a href="#">Page 2</a></li>
-		</ul> -->
-		<ul class="nav navbar-nav navbar-right">
-			<li><a class="navbar-brand nav-link" href="/"><span class="fas fa-sign-out-alt "></span> Logout</a></li>
-		</ul>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+			<li class="nav-item active">
+					<a class="nav-link" href="/profile">Profile <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Courses <span class="sr-only">(current)</span></a>
+			</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="/logout"><span class="fas fa-sign-out-alt "></span> Logout</a></li>
+			</ul>
+		</div>
 	</nav>
 
 <div class="container">
 
 	<div class="page-header text-center">
 		<h1><span class="fa fa-anchor"></span> Profile Page</h1>
-		<a href="/logout" class="btn btn-default btn-sm">Logout</a>
 	</div>
 
 	<div class="row">
