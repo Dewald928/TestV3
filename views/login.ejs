@@ -2,46 +2,54 @@
 <!doctype html>
 <html>
 <head>
-	<title>Node Authentication</title>
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-	<style>
-		body 		{ padding-top:80px; }
+    <title>TestV2</title>
+	<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"> <!-- load bootstrap css -->
+	<link rel="stylesheet" href="/fonts/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css"><!-- load fontawesome -->
+    
+    <link rel="icon" href="images/raspberry.png" type="image/png">
+
+    <style>
+		body 		{ padding-top:20px; }
 	</style>
 </head>
 <body>
-    <div class="container">
-        <div class="col-sm-6 col-sm-offset-3">
-            <h1><span class="fa fa-sign-in"></span> Login</h1>
 
-            <!-- show any messages that come back with authentication -->
-            <% if (message.length > 0) { %>
-                <div class="alert alert-danger"><%= message %></div>
-            <% } %>
+    <div class="container-fluid text-center" >
+        <h1 class="display-1">Test<strong>V2</strong></h1>
+        <h1><span class="fa fa-sign-in"></span> Login</h1>
+    </div>
 
-            <!-- LOGIN FORM -->
-            <form action="/login" method="post">
-                <div class="form-group">
-                    <label>Username</label>
-                    <input type="text" class="form-control" value="dvd928" name="username">
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" class="form-control" value="dvd123" name="password">
-                </div>
-                <div class="form-group">
-                    <label>Remember Me</label>
-                    <input type="checkbox" class="form-control" name="remember" value="yes">
-                </div>
+    <!-- show any messages that come back with authentication -->
+    <% if (message.length > 0) { %>
+        <div class="alert alert-danger"><%= message %></div>
+    <% } %>
 
-                <button type="submit" class="btn btn-warning btn-lg">Login</button>
-            </form>
+    <div class="mx-auto" style="width: 300px;">
+        <div class="col-sm">
 
-            <hr>
 
-            <p>Need an account? <a href="/signup">Signup</a></p>
-            <p>Or go <a href="/">home</a>.</p>
+        <form action="/login" method="post">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" class="form-control" value="dvd928" name="username">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" value="dvd123" name="password">
+            </div>
+            <div class="form-group">
+                <input type="checkbox" name="remember" value="yes">
+                <label>Remember Me</label>
+            </div>
+
+            <button type="submit" class="btn btn-warning btn-lg w-100">Login</button>
+        </form>
+        <hr>
+
+        <p>Need an account? <a href="/signup">Signup</a></p>
+        <!-- <p>Or go <a href="/">home</a>.</p> -->
         </div>
     </div>
+
 </body>
 </html>
