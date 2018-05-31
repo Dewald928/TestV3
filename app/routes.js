@@ -103,38 +103,6 @@ module.exports = function(app, passport) {
 					}
 				};			
 			});	
-
-
-
-		// let sql = `SELECT courseName from courses,users where courses.userID = users.id and users.id = ? and courses.courseName = ?`;
-		// 	let query = connection.query(sql,[req.user.id, req.params.courseName], (err, results) => {
-		// 		if(err) throw err;
-		// 		// console.log(results);
-		// 		JSON.stringify(results);
-		// 		if(results != req.params.courseName) {
-		// 			let sql = 'SELECT LESSON_NAME, LESSON_DESCRIPTION, LESSON_MATERIAL, courseName, courseDescription FROM lessons,courses WHERE lessons.COURSE_FK = courses.COURSE_ID and courses.courseName = ? order by lessonNumber asc';
-		// 				let query = connection.query(sql,[req.params.courseName], (err, results1) => {
-		// 					if(err) throw err;
-		// 					// console.log(results);
-		// 					if(isEmpty(results1)) {
-		// 						res.redirect('/profile');
-		// 					} else {
-		// 						res.render('courseView.ejs',{user: req.user, course: results1});
-		// 					};			
-		// 				});	
-		// 		} else {
-		// 			let sql = 'SELECT LESSON_NAME, LESSON_DESCRIPTION, LESSON_MATERIAL, courseName, courseDescription FROM lessons,courses WHERE lessons.COURSE_FK = courses.COURSE_ID and courses.courseName = ? order by lessonNumber asc';
-		// 				let query = connection.query(sql,[req.params.courseName], (err, results2) => {
-		// 					if(err) throw err;
-		// 					// console.log(results);
-		// 					if(isEmpty(results2)) {
-		// 						res.redirect('/profile');
-		// 					} else {
-		// 						res.render('courseEdit.ejs',{user: req.user, course: results2});
-		// 					};			
-		// 				});		
-		// 		};			
-		// 	});		
 	});
 
 	// =====================================
@@ -197,6 +165,7 @@ module.exports = function(app, passport) {
 	// =====================================
 	// ============Gradebook================
 	// =====================================
+	//vir students view
 	app.get('/course/:courseName/gradebook', function(req, res){
 		let sql = 'SELECT * FROM marks,users,assessments,courses WHERE marks.STUDENT_FK=users.id and marks.ASSESSMENT_FK=assessments.ASSESSMENT_ID and assessments.COURSE_FK = courses.COURSE_ID and users.id = ? and courses.courseName =?';
     	let query = connection.query(sql, [req.user.id, req.params.courseName], (err, results) => {
@@ -208,6 +177,18 @@ module.exports = function(app, passport) {
     	});
 	});
 
+
+	// =====================================
+	// ============Assignments==============
+	// =====================================
+	app.get('/course/:courseName/assessments', function(req, res){
+		let sql = 'SELECT * FROM assessments';
+    	let query = connection.query(sql, (err, results) => {
+        if(err) throw err;
+		// console.log(results);
+		res.json(results); //get courses for each user
+    	});
+	});
 
 
 	// =====================================
