@@ -157,6 +157,25 @@ module.exports = function(app, passport) {
 		});		
 	});
 
+	//delete clicked lesson
+	app.get('/course/:courseName/deletelesson/:lesson', function(req, res){
+		//get course id
+		let sql = 'SELECT COURSE_FK FROM lessons,courses WHERE lessons.COURSE_FK = courses.COURSE_ID and courses.courseName = ?';
+		let query = connection.query(sql, [req.params.courseName], (err, results) => {
+			if(err) throw err;
+			// console.log(results[0].COURSE_FK);
+			var courseid = results[0].COURSE_FK;
+
+				let sql = 'DELETE l FROM lessons l INNER JOIN courses WHERE l.COURSE_FK=courses.COURSE_ID and COURSE_FK = ? and l.lessonNumber = ?';
+				var lessonNumber = parseInt(req.params.lesson);
+				let query = connection.query(sql, [courseid, lessonNumber], (err, results) => {
+					if(err) throw err;
+					console.log(results);
+					res.redirect('/profile');
+				});		
+		});
+	});
+
 	// app.post('/course/:courseName/editLesson', function(req, res){
 	// 	//get course id
 	// 	var lessonNumber = req.body.lessonNumber;

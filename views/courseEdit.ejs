@@ -48,9 +48,10 @@
             <% for(var i=0; i<course.length;i++){ %>
                 <tr>
                     <td><%= course[i].lessonNumber %></td>
-                    <td><button class="btn btn-primary-outline" data-toggle="modal" data-target="#editLesson"><span class="fas fa-edit text-left"></span>  <%= course[i].LESSON_NAME %></td></button> 
+                    <td><button class="btn btn-primary-outline" data-toggle="modal" data-target="#editLesson"><span class="fas fa-edit text-left"></span>  <%= course[i].LESSON_NAME %></td></button>                                
                     <td><%= course[i].LESSON_DESCRIPTION %></td>
                     <td><%= course[i].LESSON_MATERIAL %></td>
+                    <td><a href="/course/<%= course[i].courseName %>/deletelesson/<%= course[i].lessonNumber %>">Delete</a></td>
                 </tr> 
             <%} %>
             <tr>
