@@ -3,9 +3,14 @@
 <html>
 <head>
     <title>TestV2</title>
-	<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"> <!-- load bootstrap css -->
-	<link rel="stylesheet" href="/fonts/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css"><!-- load fontawesome -->
-    
+    <script src="/scripts/jquery-3.2.1.min.js"></script>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="/fonts/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css">
+    <!-- googly-eyes -->
+    <link rel="stylesheet" href="/styles/googly-eyes.css">
+
     <link rel="icon" href="images/raspberry.png" type="image/png">
 
     <style>
@@ -14,42 +19,67 @@
 </head>
 <body>
 
-    <div class="container-fluid text-center" >
-        <h1 class="display-1">Test<strong>V2</strong></h1>
-        <h1><span class="fa fa-sign-in"></span> Login</h1>
-    </div>
-
-    <!-- show any messages that come back with authentication -->
-    <% if (message.length > 0) { %>
-        <div class="alert alert-danger"><%= message %></div>
-    <% } %>
-
-    <div class="mx-auto" style="width: 300px;">
-        <div class="col-sm">
-
-
-        <form action="/login" method="post">
-            <div class="form-group">
-                <label>Username</label>
-                <input type="text" class="form-control" value="dvd928" name="username">
+        <section class="move-area">
+                
+        <div class="container-fluid text-center">
+            <h1 class="display-1">Test<strong>V2</strong></h1>
+            <div id='ouBill'>
+                <div class='eye' style="top:105px; left: -14px"></div>
+                <div class='eye' style="top:92px; left: 0px"></div>
             </div>
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" class="form-control" value="dvd123" name="password">
-            </div>
-            <div class="form-group">
-                <input type="checkbox" name="remember" value="yes">
-                <label>Remember Me</label>
-            </div>
+         
+        <script>
+            $(".move-area").mousemove(function(event) {
+                var eye = $(".eye");
+                var x = (eye.offset().left) + (eye.width() / 2);
+                var y = (eye.offset().top) + (eye.height() / 2);
+                var rad = Math.atan2(event.pageX - x, event.pageY - y);
+                var rot = (rad * (180 / Math.PI) * -1) + 180;
+                eye.css({
+                    '-webkit-transform': 'rotate(' + rot + 'deg)',
+                    '-moz-transform': 'rotate(' + rot + 'deg)',
+                    '-ms-transform': 'rotate(' + rot + 'deg)',
+                    'transform': 'rotate(' + rot + 'deg)'
+                });
+            });
+        </script>
 
-            <button type="submit" class="btn btn-warning btn-lg w-100">Login</button>
-        </form>
-        <hr>
-
-        <p>Need an account? <a href="/signup">Signup</a></p>
-        <!-- <p>Or go <a href="/">home</a>.</p> -->
+            
+            <h1><span class="fa fa-sign-in"></span> Login</h1>
         </div>
-    </div>
 
+        <!-- show any messages that come back with authentication -->
+        <% if (message.length > 0) { %>
+            <div class="alert alert-danger"><%= message %></div>
+        <% } %>
+
+        <div class="mx-auto" style="width: 300px;">
+            <div class="col-sm">
+
+
+            <form action="/login" method="post">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" class="form-control" value="dvd928" name="username">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" class="form-control" value="dvd123" name="password">
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" name="remember" value="yes">
+                    <label>Remember Me</label>
+                </div>
+
+                <button type="submit" class="btn btn-warning btn-lg w-100">Login</button>
+            </form>
+            <hr>
+
+            <p>Need an account? <a href="/signup">Signup</a></p>
+            <!-- <p>Or go <a href="/">home</a>.</p> -->
+            </div>
+        </div>
+
+    </section>
 </body>
 </html>
