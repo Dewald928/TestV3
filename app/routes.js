@@ -71,22 +71,63 @@ module.exports = function(app, passport) {
 	// =====================================
 	// Individual Courses ==================
 	// =====================================
-	//open individual course and it's lessons
+	//open individual course and it's lessons for student
 	app.get('/course/:courseName', function(req,res){
-		console.log(req.params.courseName);
+		// console.log(req.params.courseName);
+		//*********************should be lecturer who created the course that only he can edit******
 		//select course and it's corresponding lessons
 		let sql = 'SELECT LESSON_NAME, LESSON_DESCRIPTION, LESSON_MATERIAL, courseName, courseDescription FROM lessons,courses WHERE lessons.COURSE_FK = courses.COURSE_ID and courses.courseName = ? order by lessonNumber asc';
-    	let query = connection.query(sql,[req.params.courseName], (err, results) => {
-			if(err) throw err;
-			// console.log(results);
-			if(isEmpty(results)) {
-				res.redirect('/profile');
-			} else {
-				res.render('courseView.ejs',{user: req.user, course: results});
-			};
-			
-		});	
+						let query = connection.query(sql,[req.params.courseName], (err, results2) => {
+							if(err) throw err;
+							// console.log(results);
+							if(isEmpty(results2)) {
+								res.redirect('/profile');
+							} else {
+								if(req.user.lecturer > 0){
+									res.render('courseEdit.ejs',{user: req.user, course: results2});
+								} else {
+									res.render('courseView.ejs',{user: req.user, course: results2});
+								}
+							};			
+						});	
+
+
+
+		// let sql = `SELECT courseName from courses,users where courses.userID = users.id and users.id = ? and courses.courseName = ?`;
+		// 	let query = connection.query(sql,[req.user.id, req.params.courseName], (err, results) => {
+		// 		if(err) throw err;
+		// 		// console.log(results);
+		// 		JSON.stringify(results);
+		// 		if(results != req.params.courseName) {
+		// 			let sql = 'SELECT LESSON_NAME, LESSON_DESCRIPTION, LESSON_MATERIAL, courseName, courseDescription FROM lessons,courses WHERE lessons.COURSE_FK = courses.COURSE_ID and courses.courseName = ? order by lessonNumber asc';
+		// 				let query = connection.query(sql,[req.params.courseName], (err, results1) => {
+		// 					if(err) throw err;
+		// 					// console.log(results);
+		// 					if(isEmpty(results1)) {
+		// 						res.redirect('/profile');
+		// 					} else {
+		// 						res.render('courseView.ejs',{user: req.user, course: results1});
+		// 					};			
+		// 				});	
+		// 		} else {
+		// 			let sql = 'SELECT LESSON_NAME, LESSON_DESCRIPTION, LESSON_MATERIAL, courseName, courseDescription FROM lessons,courses WHERE lessons.COURSE_FK = courses.COURSE_ID and courses.courseName = ? order by lessonNumber asc';
+		// 				let query = connection.query(sql,[req.params.courseName], (err, results2) => {
+		// 					if(err) throw err;
+		// 					// console.log(results);
+		// 					if(isEmpty(results2)) {
+		// 						res.redirect('/profile');
+		// 					} else {
+		// 						res.render('courseEdit.ejs',{user: req.user, course: results2});
+		// 					};			
+		// 				});		
+		// 		};			
+		// 	});		
+
+		
 	});
+
+
+
 
 
 	// =====================================
@@ -162,23 +203,6 @@ module.exports = function(app, passport) {
 		});			
 	});
 
-	// app.get('/profile/:id', isLoggedIn, function(req, res) {
-	// 	var mycourses ={};
-	// 	let sql = 'SELECT courseName,courseDescription FROM courses,enrollment,users WHERE courses.COURSE_ID=enrollment.COURSE_ID and enrollments.STUDENT_ID = users.id and users.id = ?';
-    // 	let query = connection.query(sql,[req.user.id], (err, results) => {
-	// 		if(err) throw err;
-	// 		mycourses= results;
-
-	// 		if(isEmpty(mycourses)) {
-	// 			mycourses = "";
-	// 		} 
-	// 		console.log(mycourses);
-	// 		res.render('profile.ejs', {
-	// 			user : req.user, // get the user out of session and pass to template
-	// 			course : mycourses //get courses for each user
-	// 		});
-	// 	});			
-	// });
 
 	// =====================================
 	// LOGOUT ==============================
