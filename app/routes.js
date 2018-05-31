@@ -54,8 +54,15 @@ module.exports = function(app, passport) {
 		let courseName = req.body.courseName;
 		let courseDesc = req.body.courseDescription;
     	let query = connection.query(sql,[courseName, courseDesc], (err, results) => {
-        if(err) throw err;
-        res.redirect('/profile');
+		if(err) throw err;
+			//add demo lesson
+			let demo = 'demo';
+			console.log(results.insertId);
+			let sql = 'INSERT INTO lessons (COURSE_FK, lessonNumber, LESSON_NAME, LESSON_DESCRIPTION, LESSON_MATERIAL) VALUES (?,1,?,?,?) ';
+			let query = connection.query(sql,[results.insertId, demo,demo,demo], (err, results) => {
+				if(err) throw err;				
+				res.redirect('/profile');
+			});
     	});
 	});
 
@@ -77,19 +84,23 @@ module.exports = function(app, passport) {
 		//*********************should be lecturer who created the course that only he can edit******
 		//select course and it's corresponding lessons
 		let sql = 'SELECT LESSON_NAME, LESSON_DESCRIPTION, LESSON_MATERIAL, courseName, courseDescription FROM lessons,courses WHERE lessons.COURSE_FK = courses.COURSE_ID and courses.courseName = ? order by lessonNumber asc';
-						let query = connection.query(sql,[req.params.courseName], (err, results2) => {
-							if(err) throw err;
-							// console.log(results);
-							if(isEmpty(results2)) {
-								res.redirect('/profile');
-							} else {
-								if(req.user.lecturer > 0){
-									res.render('courseEdit.ejs',{user: req.user, course: results2});
-								} else {
-									res.render('courseView.ejs',{user: req.user, course: results2});
-								}
-							};			
-						});	
+			let query = connection.query(sql,[req.params.courseName], (err, results2) => {
+				if(err) throw err;
+				// console.log(results);
+				if(isEmpty(results2)) {
+					if(req.user.lecturer > 0) {
+						res.render('courseEdit.ejs');//*moet course object paas maar is nie een
+					} else {
+						res.redirect('/profile');
+					};
+				} else {
+					if(req.user.lecturer > 0){
+						res.render('courseEdit.ejs',{user: req.user, course: results2});
+					} else {
+						res.render('courseView.ejs',{user: req.user, course: results2});
+					}
+				};			
+			});	
 
 
 
@@ -122,10 +133,19 @@ module.exports = function(app, passport) {
 		// 				});		
 		// 		};			
 		// 	});		
-
-		
 	});
 
+	// =====================================
+	// Lessons =============================
+	// =====================================
+	app.get('/availableCourses', function(req, res){
+		let sql = 'SELECT * FROM courses';
+    	let query = connection.query(sql, (err, results) => {
+        if(err) throw err;
+		console.log(results);
+		res.json(results); //get courses for each user
+    	});
+	});
 
 
 
