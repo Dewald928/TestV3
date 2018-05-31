@@ -177,6 +177,7 @@ module.exports = function(app, passport) {
     	});
 	});
 
+<<<<<<< HEAD
 
 	// =====================================
 	// ============Assignments==============
@@ -190,6 +191,18 @@ module.exports = function(app, passport) {
     	});
 	});
 
+=======
+	// =====================================
+	// ============Assignments==============
+	// =====================================
+	app.get('/course/:courseName/assessment', function(req, res){
+		let sql = 'SELECT * FROM assessments,courses WHERE assessments.COURSE_FK = courses.COURSE_ID and courses.courseName =?';
+    	let query = connection.query(sql, [req.user.id, req.params.courseName], (err, results) => {
+			if(err) throw err;
+			res.render('assessment.ejs', {availibleAssessments: results, courseName:req.params.courseName}); //get marks for user
+		});
+	});
+>>>>>>> c5790000ad9dd2b00c39eff5afba27cc40c609d6
 
 	// =====================================
 	// HOME PAGE (with login links) ========
