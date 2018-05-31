@@ -157,6 +157,25 @@ module.exports = function(app, passport) {
 		});		
 	});
 
+	// app.post('/course/:courseName/editLesson', function(req, res){
+	// 	//get course id
+	// 	var lessonNumber = req.body.lessonNumber;
+	// 	var LESSON_NAME = req.body.LESSON_NAME;
+	// 	var LESSON_DESCRIPTION = req.body.LESSON_DESCRIPTION;
+	// 	var LESSON_MATERIAL = req.body.LESSON_MATERIAL;
+	// 	let sql = 'SELECT COURSE_FK FROM lessons,courses WHERE lessons.COURSE_FK = courses.COURSE_ID and courses.courseName = ?';
+	// 	let query = connection.query(sql, [req.params.courseName], (err, results) => {
+	// 		if(err) throw err;
+	// 		console.log('COURSE_FK = ' + results[0].COURSE_FK);
+	// 		var courseid = results[0].COURSE_FK;
+	// 		let sql = 'UPDATE lessons SET LESSON_NAME = ?, LESSON_DESCRIPTION = ?, LESSON_MATERIAL = ? WHERE  COURSE_FK = ? AND lessonNumber = ?';
+	// 		let query = connection.query(sql,[LESSON_NAME,LESSON_DESCRIPTION,LESSON_MATERIAL,courseid, lessonNumber], (err, results) => {
+	// 			if(err) throw err;				
+	// 			res.redirect('/course/'+req.params.courseName);
+	// 		});
+	// 	});		
+	// });
+	
 	// =====================================
 	// ============Gradebook================
 	// =====================================
