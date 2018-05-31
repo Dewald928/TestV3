@@ -187,7 +187,7 @@ module.exports = function(app, passport) {
 		// console.log(results);
 		req.flash('info', 'Flashback to reality! There goes net neutrality!');
 		// res.json(results);
-		res.render('gradebook.ejs', {message: req.flash('info'), marks: results}); //get marks for user
+		res.render('gradebook.ejs', {message: req.flash('info'), marks: results, courseName:req.params.courseName}); //get marks for user
     	});
 	});
 
