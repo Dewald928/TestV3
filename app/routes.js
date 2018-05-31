@@ -88,7 +88,7 @@ module.exports = function(app, passport) {
 				// console.log(results);
 				if(isEmpty(results2)) {
 					if(req.user.lecturer > 0) {
-						res.render('courseEdit.ejs');//*moet course object paas maar is nie een
+						res.redirect('/profile');//*moet course object paas maar is nie een
 					} else {
 						res.redirect('/profile');
 					};
@@ -157,7 +157,6 @@ module.exports = function(app, passport) {
 		});		
 	});
 
-<<<<<<< HEAD
 	//delete clicked lesson
 	app.get('/course/:courseName/deletelesson/:lesson', function(req, res){
 		//get course id
@@ -177,45 +176,6 @@ module.exports = function(app, passport) {
 		});
 	});
 
-	// app.post('/course/:courseName/editLesson', function(req, res){
-	// 	//get course id
-	// 	var lessonNumber = req.body.lessonNumber;
-	// 	var LESSON_NAME = req.body.LESSON_NAME;
-	// 	var LESSON_DESCRIPTION = req.body.LESSON_DESCRIPTION;
-	// 	var LESSON_MATERIAL = req.body.LESSON_MATERIAL;
-	// 	let sql = 'SELECT COURSE_FK FROM lessons,courses WHERE lessons.COURSE_FK = courses.COURSE_ID and courses.courseName = ?';
-	// 	let query = connection.query(sql, [req.params.courseName], (err, results) => {
-	// 		if(err) throw err;
-	// 		console.log('COURSE_FK = ' + results[0].COURSE_FK);
-	// 		var courseid = results[0].COURSE_FK;
-	// 		let sql = 'UPDATE lessons SET LESSON_NAME = ?, LESSON_DESCRIPTION = ?, LESSON_MATERIAL = ? WHERE  COURSE_FK = ? AND lessonNumber = ?';
-	// 		let query = connection.query(sql,[LESSON_NAME,LESSON_DESCRIPTION,LESSON_MATERIAL,courseid, lessonNumber], (err, results) => {
-	// 			if(err) throw err;				
-	// 			res.redirect('/course/'+req.params.courseName);
-	// 		});
-	// 	});		
-	// });
-=======
-	app.post('/course/:courseName/editLesson', function(req, res){
-		//get course id
-		var lessonNumber = req.body.lessonNumber;
-		var LESSON_NAME = req.body.LESSON_NAME;
-		var LESSON_DESCRIPTION = req.body.LESSON_DESCRIPTION;
-		var LESSON_MATERIAL = req.body.LESSON_MATERIAL;
-		let sql = 'SELECT COURSE_FK FROM lessons,courses WHERE lessons.COURSE_FK = courses.COURSE_ID and courses.courseName = ?';
-		let query = connection.query(sql, [req.params.courseName], (err, results) => {
-			if(err) throw err;
-			console.log('COURSE_FK = ' + results[0].COURSE_FK);
-			var courseid = results[0].COURSE_FK;
-			let sql = 'UPDATE lessons SET LESSON_NAME = ?, LESSON_DESCRIPTION = ?, LESSON_MATERIAL = ? WHERE  COURSE_FK = ? AND lessonNumber = ?';
-			let query = connection.query(sql,[LESSON_NAME,LESSON_DESCRIPTION,LESSON_MATERIAL,courseid, lessonNumber], (err, results) => {
-				if(err) throw err;				
-				res.redirect('/course/'+req.params.courseName);
-			});
-		});		
-	});
-	
->>>>>>> 814c1f7faeaf829938505f0749f87756682c662e
 	
 	// =====================================
 	// ============Gradebook================
