@@ -23,9 +23,9 @@
 				</li>
 				<li class="nav-item">
 					<% if(user.lecturer) { %>
-						<a class="nav-link" href="#" data-toggle="modal" data-target="#addCourse"> Create Course <span class="sr-only">(current)</span></a>
+						<a class="nav-link" href="#" data-toggle="modal" data-target="#createCourse" > Create Course <span class="sr-only">(current)</span></a>
 					<%} else {%>
-						<a class="nav-link" href="/courses" data-toggle="modal" data-target="#addCourse" id="but"> Add Course <span class="sr-only">(current)</span></a>
+						<a class="nav-link" href="/courses" data-toggle="modal" data-target="#addCourse" id="addCourseBut"> Add Course <span class="sr-only">(current)</span></a>
 					<%}	%>
 			</li>
 			</ul>
@@ -38,7 +38,11 @@
 	<div class="container">
 
 		<div class="page-header text-center">
-			<h1><span class="fa fa-anchor"></span> Profile</h1>
+				<% if(user.lecturer) { %>
+					<h1><span class="fa fa-anchor"></span> Lecturer Profile</h1>
+				<%} else {%>
+					<h1><span class="fa fa-anchor"></span> Student Profile</h1>
+				<%}	%>
 		</div>
 
 		<div class="row">
@@ -68,7 +72,7 @@
 	</div>
 
 
-	<!-- Modal -->
+	<!-- Add Course Modal -->
 	<div class="modal fade" id="addCourse" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 		  <div class="modal-content">
@@ -79,10 +83,6 @@
 			  </button>
 			</div>
 			<div class="modal-body">
-					<strong>Course</strong>:
-					<% for(var i=0; i<course.length;i++){ %>						
-						<a class="btn btn-outline-primary" href=<%= "course/" + course[i].courseName %>><%= course[i].courseName %></a>
-					<%} %>
 
 			</div>
 			<div class="modal-footer">
@@ -90,6 +90,54 @@
 			</div>
 		  </div>
 		</div>
-	  </div>
+		</div>
+
+	<!-- Create Course Modal -->
+		<div class="modal fade" id="createCourse" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Create Course</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+							<form action="/courses/new" method="post">
+								<div class="form-group">
+										<label>Course Name</label><br>
+										<input type="text" class="form-control" value="EERI313" name="courseName">
+								</div>
+								<div class="form-group">
+										<label>Course Description</label><br>
+										<textarea  name="courseDescription"> </textarea>
+								</div>
+						
+								<button type="submit" class="btn btn-warning btn-lg w-100">Create</button>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+					</div>
+				</div>
+				</div>
+
+		
+		<script>
+				$( "#addCourseBut" ).on( "click", function( event ) {
+					$.ajax({
+					url: "availableCourses",
+					success: function( result ) {
+						console.log(result);
+						var text = 'Available Courses: <br>'
+						for (let i = 0; i < result.length; i++) {
+							text = text + '<a class="btn btn-outline-primary" >' + result[i].courseName + '</a>';
+						}
+							$(availableCourses).html(text);
+					}
+				})
+				});
+		</script>
 </body>
 </html>
