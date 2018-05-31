@@ -132,7 +132,7 @@
 						console.log(result);
 						var text = 'Available Courses: <br>'
 						for (let i = 0; i < result.length; i++) {
-							text = text + '<a class="btn btn-outline-primary" >' + result[i].courseName + '</a>';
+							text = text + '<a class="btn btn-outline-primary"  href="courses/add/' + result[i].COURSE_ID +'" >' + result[i].courseName + '</a>';
 						}
 							$(availableCourses).html(text);
 					}
