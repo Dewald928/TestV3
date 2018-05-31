@@ -154,13 +154,21 @@ module.exports = function(app, passport) {
 				if(err) throw err;				
 				res.redirect('/course/'+req.params.courseName);
 			});
-		});
-
-
-
-		
+		});		
 	});
 
+	// =====================================
+	// Assignments/Gradebook================
+	// =====================================
+	app.get('/course/:courseName/gradebook', function(req, res){
+		let sql = 'SELECT * FROM marks,users,assessments WHERE marks.STUDENT_FK=users.id and marks.ASSESSMENT_FK=assessments.ASSESSMENT_ID and users.id = ?';
+    	let query = connection.query(sql, [req.user.id], (err, results) => {
+        if(err) throw err;
+		// console.log(results);
+		req.flash('info', 'Flashback!');
+		res.render('gradebook.ejs', {message: req.flash('info'), marks: results}); //get marks for user
+    	});
+	});
 
 
 
