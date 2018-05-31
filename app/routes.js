@@ -146,12 +146,13 @@ module.exports = function(app, passport) {
 		form.uploadDir = "/";
 		form.parse(req, function (err, fields, files) {
 			var oldpath = files.filetoupload.path;
-			var newpath = process.cwd() + '/' + files.filetoupload.name;
+			var newpath = createMaterialPath(req.params.courseName) + '/' + files.filetoupload.name;
 			fs.rename(oldpath, newpath, function (err) {
 			  if (err) throw err;
 			//   res.write('File uploaded and moved!');
 			//   res.end();
 			});
+
 			var lessonNumber = fields.lessonNumber;
 			var LESSON_NAME = fields.LESSON_NAME;
 			var LESSON_DESCRIPTION = fields.LESSON_DESCRIPTION;
@@ -163,7 +164,7 @@ module.exports = function(app, passport) {
 				var courseid = results[0].COURSE_FK;
 	
 				let sql = 'INSERT INTO lessons (COURSE_FK, lessonNumber, LESSON_NAME, LESSON_DESCRIPTION, LESSON_MATERIAL) VALUES (?,?,?,?,?) ';
-				let query = connection.query(sql,[courseid, lessonNumber,LESSON_NAME,LESSON_DESCRIPTION,LESSON_MATERIAL], (err, results) => {
+				let query = connection.query(sql,[courseid, lessonNumber,LESSON_NAME,LESSON_DESCRIPTION,files.filetoupload.name], (err, results) => {
 					if(err) throw err;				
 					res.redirect('/course/'+req.params.courseName);
 				});
@@ -309,4 +310,26 @@ function isLoggedIn(req, res, next) {
 
 	// if they aren't redirect them to the home page
 	res.redirect('/');
+}
+
+function createMaterialPath(courseName){
+	/*Use the existing directory to save material or create a new one*/
+	var materialPath = process.cwd() + '/views/material/' + courseName;
+	fs.readdir(materialPath, function (err, files) {
+		if (err) {
+			if (err.code === 'ENOENT') {
+				fs.mkdir(materialPath,(err) => {
+					if (err){
+						console.log('Could not create',materialPath);
+						console.log('Error:',err);
+					}
+					else {
+						console.log('Created',materialPath);
+					}
+				});
+			}
+			else throw err;
+		};
+	});
+	return materialPath;
 }
