@@ -48,7 +48,7 @@
                 <tr>
                     <td><button class="btn btn-primary-outline" data-toggle="modal" data-target="#editLesson"><span class="fas fa-edit text-left"></span>  <%= course[i].LESSON_NAME %></td></button> 
                     <td><%= course[i].LESSON_DESCRIPTION %></td>
-                    <td><%= course[0].LESSON_MATERIAL %></td>
+                    <td><%= course[i].LESSON_MATERIAL %></td>
                 </tr> 
             <%} %>
             <tr>
@@ -70,17 +70,27 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="#" method="post">
+
+                <form action="/course/<%= course[0].courseName %>/addLesson" method="post">
                     <div class="form-group">
-                        <label>Lesson Name</label><br>
-                        <input type="text" class="form-control" name="lessonName">
+                        <label>Number</label><br>
+                        <input type="text" class="form-control" name="lessonNumber">
                     </div>
                     <div class="form-group">
-                        <label>Course Description</label><br>
-                        <textarea  name="lessonDescription" class="w-100"> </textarea>
+                        <label>Name</label><br>
+                        <input type="text" class="form-control" name="LESSON_NAME">
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label><br>
+                        <textarea  name="LESSON_DESCRIPTION" class="w-100"> </textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Material</label><br>
+                        <input type="text" class="form-control" name="LESSON_MATERIAL">
                     </div>
                     <button type="submit" class="btn btn-warning btn-lg w-100">Create</button>
                 </form>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -101,6 +111,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
+
                     <form action="#" method="post">
                         <div class="form-group">
                             <label>Lesson Name</label><br>
@@ -112,6 +123,7 @@
                         </div>
                         <button type="submit" class="btn btn-warning btn-lg w-100">Save</button>
                     </form>
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

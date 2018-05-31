@@ -139,10 +139,10 @@ module.exports = function(app, passport) {
 	// =====================================
 	app.post('/course/:courseName/addlesson', function(req, res){
 		//get course id
-		var lessonNumber = req.query.lessonNumber;
-		var LESSON_NAME = req.query.LESSON_NAME;
-		var LESSON_DESCRIPTION = req.query.LESSON_DESCRIPTION;
-		var LESSON_MATERIAL = req.query.LESSON_MATERIAL;
+		var lessonNumber = req.body.lessonNumber;
+		var LESSON_NAME = req.body.LESSON_NAME;
+		var LESSON_DESCRIPTION = req.body.LESSON_DESCRIPTION;
+		var LESSON_MATERIAL = req.body.LESSON_MATERIAL;
 		let sql = 'SELECT COURSE_FK FROM lessons,courses WHERE lessons.COURSE_FK = courses.COURSE_ID and courses.courseName = ?';
 		let query = connection.query(sql, [req.params.courseName], (err, results) => {
 			if(err) throw err;
@@ -152,7 +152,7 @@ module.exports = function(app, passport) {
 			let sql = 'INSERT INTO lessons (COURSE_FK, lessonNumber, LESSON_NAME, LESSON_DESCRIPTION, LESSON_MATERIAL) VALUES (?,?,?,?,?) ';
 			let query = connection.query(sql,[courseid, lessonNumber,LESSON_NAME,LESSON_DESCRIPTION,LESSON_MATERIAL], (err, results) => {
 				if(err) throw err;				
-				res.redirect('/profile');
+				res.redirect('/course/'+req.params.courseName);
 			});
 		});
 
