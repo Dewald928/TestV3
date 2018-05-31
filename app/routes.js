@@ -5,6 +5,9 @@ var mysql = require('mysql');
 var dbconfig = require('../config/database');
 var connection = mysql.createConnection(dbconfig.connection);
 
+var formidable = require('formidable');
+var fs = require('fs');
+
 connection.query('USE ' + dbconfig.database);
 
 module.exports = function(app, passport) {
@@ -139,22 +142,35 @@ module.exports = function(app, passport) {
 	// =====================================
 	app.post('/course/:courseName/addlesson', function(req, res){
 		//get course id
-		var lessonNumber = req.body.lessonNumber;
-		var LESSON_NAME = req.body.LESSON_NAME;
-		var LESSON_DESCRIPTION = req.body.LESSON_DESCRIPTION;
-		var LESSON_MATERIAL = req.body.LESSON_MATERIAL;
-		let sql = 'SELECT COURSE_FK FROM lessons,courses WHERE lessons.COURSE_FK = courses.COURSE_ID and courses.courseName = ?';
-		let query = connection.query(sql, [req.params.courseName], (err, results) => {
-			if(err) throw err;
-			console.log(results[0].COURSE_FK);
-			var courseid = results[0].COURSE_FK;
-
-			let sql = 'INSERT INTO lessons (COURSE_FK, lessonNumber, LESSON_NAME, LESSON_DESCRIPTION, LESSON_MATERIAL) VALUES (?,?,?,?,?) ';
-			let query = connection.query(sql,[courseid, lessonNumber,LESSON_NAME,LESSON_DESCRIPTION,LESSON_MATERIAL], (err, results) => {
-				if(err) throw err;				
-				res.redirect('/course/'+req.params.courseName);
+		var form = new formidable.IncomingForm();
+		form.uploadDir = "/";
+		form.parse(req, function (err, fields, files) {
+			var oldpath = files.filetoupload.path;
+			var newpath = process.cwd() + '/' + files.filetoupload.name;
+			fs.rename(oldpath, newpath, function (err) {
+			  if (err) throw err;
+			//   res.write('File uploaded and moved!');
+			//   res.end();
 			});
-		});		
+			var lessonNumber = fields.lessonNumber;
+			var LESSON_NAME = fields.LESSON_NAME;
+			var LESSON_DESCRIPTION = fields.LESSON_DESCRIPTION;
+			var LESSON_MATERIAL = fields.LESSON_MATERIAL;
+			let sql = 'SELECT COURSE_FK FROM lessons,courses WHERE lessons.COURSE_FK = courses.COURSE_ID and courses.courseName = ?';
+			let query = connection.query(sql, [req.params.courseName], (err, results) => {
+				if(err) throw err;
+				console.log(results[0].COURSE_FK);
+				var courseid = results[0].COURSE_FK;
+	
+				let sql = 'INSERT INTO lessons (COURSE_FK, lessonNumber, LESSON_NAME, LESSON_DESCRIPTION, LESSON_MATERIAL) VALUES (?,?,?,?,?) ';
+				let query = connection.query(sql,[courseid, lessonNumber,LESSON_NAME,LESSON_DESCRIPTION,LESSON_MATERIAL], (err, results) => {
+					if(err) throw err;				
+					res.redirect('/course/'+req.params.courseName);
+				});
+			});		
+		});
+
+
 	});
 
 	//delete clicked lesson
