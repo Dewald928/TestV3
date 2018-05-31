@@ -19,11 +19,17 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
+				<li class="nav-item">
 						<a class="nav-link" href="/profile">Profile <span class="sr-only">(current)</span></a>
 				</li>
+				<li class="nav-item active">
+						<a class="nav-link" href="/course/<%= course[0].courseName %>">Lessons <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item ">
+						<a class="nav-link" href="#">Assignments <span class="sr-only">(current)</span></a>
+				</li>
                 <li class="nav-item">
-                        <a class="nav-link" href="/course/<%= course[0].courseName %>/gradebook"> Gradebook<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/course/<%= course[0].courseName %>/gradebook">Gradebook<span class="sr-only">(current)</span></a>
                 </li>
             </ul>
 			<ul class="nav navbar-nav navbar-right">
@@ -45,6 +51,7 @@
                 <th>Lesson</th>
                 <th>Description</th>
                 <th>Material</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -58,6 +65,7 @@
                 </tr> 
             <%} %>
             <tr>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -78,25 +86,29 @@
             </div>
             <div class="modal-body">
 
-                <form action="/course/<%= course[0].courseName %>/addLesson" method="post">
-                    <div class="form-group">
-                        <label>Number</label><br>
-                        <input type="text" class="form-control" name="lessonNumber">
-                    </div>
-                    <div class="form-group">
-                        <label>Name</label><br>
-                        <input type="text" class="form-control" name="LESSON_NAME">
-                    </div>
-                    <div class="form-group">
-                        <label>Description</label><br>
-                        <textarea  name="LESSON_DESCRIPTION" class="w-100"> </textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Material</label><br>
-                        <input type="text" class="form-control" name="LESSON_MATERIAL">
-                    </div>
-                    <button type="submit" class="btn btn-warning btn-lg w-100">Create</button>
-                </form>
+                    <form action="/course/<%= course[0].courseName %>/addLesson" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label>Number</label><br>
+                            <input type="text" class="form-control" name="lessonNumber">
+                        </div>
+                        <div class="form-group">
+                            <label>Name</label><br>
+                            <input type="text" class="form-control" name="LESSON_NAME">
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label><br>
+                            <textarea  name="LESSON_DESCRIPTION" class="w-100"> </textarea>
+                        </div>
+                        <!-- <div class="form-group">
+                            <label>Material</label><br>
+                            <input type="text" class="form-control" name="LESSON_MATERIAL">
+                        </div> -->
+                        <div class="form-group">
+                            <label>Material</label><br>
+                            <input type="file" name="filetoupload"><br>
+                        </div>
+                        <button type="submit" class="btn btn-warning btn-lg w-100">Create</button>
+                    </form>
 
             </div>
             <div class="modal-footer">
@@ -119,7 +131,7 @@
                 </div>
                 <div class="modal-body">
 
-                    <form action="/course/<%= course[0].courseName %>/editLesson" method="post">
+                    <form action="/course/<%= course[0].courseName %>/editLesson" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label>Number</label><br>
                             <input type="text" class="form-control" name="lessonNumber">
@@ -134,7 +146,12 @@
                         </div>
                         <div class="form-group">
                             <label>Material</label><br>
-                            <input type="text" class="form-control" name="LESSON_MATERIAL">
+                            <div class="input-group mb-3">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="inputGroupFile03">
+                                    <label class="custom-file-label text-dark" for="inputGroupFile03">Choose file</label>
+                                </div>
+                            </div>
                         </div>
                         <button type="submit" class="btn btn-warning btn-lg w-100">Create</button>
                     </form>
