@@ -16,22 +16,21 @@ module.exports = function(app, passport) {
 		let sql = 'SELECT * FROM courses';
     	let query = connection.query(sql, (err, results) => {
         if(err) throw err;
-		console.log(results);
-			res.render('course.ejs', {
+		// console.log(results);
 				course : results //get courses for each user
 			});
     	});
 	});
 	
 	app.get('/courses/add/:id', function(req, res){
-		console.log(req.user.id);
+		// console.log(req.user.id);
 		let sql = 'INSERT INTO enrollment (STUDENT_ID, COURSE_ID) VALUES (?,?)';
 		let studentID = req.user.id;
 		let courseid = parseInt(req.params.id);
     	let query = connection.query(sql,[studentID, courseid], (err, results) => {
         if(err) throw err;
-		console.log(results);
-        res.json(results);
+		// console.log(results);
+        res.redirect('/profile');
     	});
 	});
 	
@@ -43,7 +42,49 @@ module.exports = function(app, passport) {
 		res.json(results); //get courses for each user
     	});
 	});
+	
+	//get new course
+	app.get('/courses/new', function(req,res){
+		// console.log(req.user.lecturer);
+		if(req.user.lecturer < 0){
+			res.redirect('/profile');
+		} else {
+			res.render('courseCreate.ejs', { user: req.user });
+		};
+	});
 
+	//post add new course to db
+	app.post('/courses/new', function(req,res){
+		// console.log(req.body);
+		let sql = 'INSERT INTO courses (courseName, courseDescription) VALUES (?,?)';
+		let courseName = req.body.courseName;
+		let courseDesc = req.body.courseDescription;
+    	let query = connection.query(sql,[courseName, courseDesc], (err, results) => {
+        if(err) throw err;
+		console.log(results);
+		res.json(results); //get courses for each user
+    	});
+	});
+
+	// =====================================
+	// Individual Courses ==================
+	// =====================================
+	//open individual course and it's lessons
+	app.get('/course/:courseName', function(req,res){
+		console.log(req.params.courseName);
+		//select course and it's corresponding lessons
+		let sql = 'SELECT LESSON_NAME, LESSON_DESCRIPTION, LESSON_MATERIAL, courseName, courseDescription FROM lessons,courses WHERE lessons.COURSE_FK = courses.COURSE_ID and courses.courseName = ? order by lessonNumber asc';
+    	let query = connection.query(sql,[req.params.courseName], (err, results) => {
+			if(err) throw err;
+			// console.log(results);
+			if(isEmpty(results)) {
+				res.redirect('/profile');
+			} else {
+				res.render('courseView.ejs',{user: req.user, course: results});
+			}
+			
+		});	
+	});
 
 
 	// =====================================

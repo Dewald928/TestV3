@@ -1,0 +1,17 @@
+<%= course[0].courseName %><br>
+<%= course[0].courseDescription %>
+<table>
+        <tr>
+            <th>Lesson</th>
+            <th>Description</th>
+        </tr>
+        <% for(var i=0; i<course.length;i++){ %>
+            <tr>
+                <td><%= course[i].LESSON_NAME %></td>
+                <td><%= course[i].LESSON_DESCRIPTION %></td>
+                <td><%= course[i].LESSON_DESCRIPTION %></td>
+            </tr> 
+        <%} %>
+    
+        
+    </table>
