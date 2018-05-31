@@ -59,6 +59,15 @@ module.exports = function(app, passport) {
     	});
 	});
 
+	app.get('/availableCourses', function(req, res){
+		let sql = 'SELECT * FROM courses';
+    	let query = connection.query(sql, (err, results) => {
+        if(err) throw err;
+		console.log(results);
+		res.json(results); //get courses for each user
+    	});
+	});
+
 	// =====================================
 	// Individual Courses ==================
 	// =====================================
