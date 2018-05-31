@@ -17,23 +17,29 @@ module.exports = function(app, passport) {
     	let query = connection.query(sql, (err, results) => {
         if(err) throw err;
 		// console.log(results);
-			res.render('courses.ejs', {
 				course : results //get courses for each user
 			});
     	});
 	});
 	
-	//adds course to user
 	app.get('/courses/add/:id', function(req, res){
 		// console.log(req.user.id);
 		let sql = 'INSERT INTO enrollment (STUDENT_ID, COURSE_ID) VALUES (?,?)';
 		let studentID = req.user.id;
 		let courseid = parseInt(req.params.id);
-		//*check if couse already added
     	let query = connection.query(sql,[studentID, courseid], (err, results) => {
         if(err) throw err;
 		// console.log(results);
         res.redirect('/profile');
+    	});
+	});
+	
+	app.get('/availableCourses', function(req, res){
+		let sql = 'SELECT * FROM courses';
+    	let query = connection.query(sql, (err, results) => {
+        if(err) throw err;
+		console.log(results);
+		res.json(results); //get courses for each user
     	});
 	});
 	
@@ -55,7 +61,8 @@ module.exports = function(app, passport) {
 		let courseDesc = req.body.courseDescription;
     	let query = connection.query(sql,[courseName, courseDesc], (err, results) => {
         if(err) throw err;
-        res.redirect('/profile');
+		console.log(results);
+		res.json(results); //get courses for each user
     	});
 	});
 
@@ -146,6 +153,7 @@ module.exports = function(app, passport) {
 			if(isEmpty(mycourses)) {
 				mycourses = "";
 			} 
+			console.log(mycourses);
 			res.render('profile.ejs', {
 				user : req.user, // get the user out of session and pass to template
 				course : mycourses //get courses for each user
