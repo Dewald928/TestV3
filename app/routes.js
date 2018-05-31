@@ -178,7 +178,7 @@ module.exports = function(app, passport) {
 	
 	
 	// =====================================
-	// Assignments/Gradebook================
+	// ============Gradebook================
 	// =====================================
 	app.get('/course/:courseName/gradebook', function(req, res){
 		let sql = 'SELECT * FROM marks,users,assessments,courses WHERE marks.STUDENT_FK=users.id and marks.ASSESSMENT_FK=assessments.ASSESSMENT_ID and assessments.COURSE_FK = courses.COURSE_ID and users.id = ? and courses.courseName =?';
