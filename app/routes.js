@@ -82,7 +82,7 @@ module.exports = function(app, passport) {
 		// console.log(req.params.courseName);
 		//*********************should be lecturer who created the course that only he can edit******
 		//select course and it's corresponding lessons
-		let sql = 'SELECT LESSON_NAME, LESSON_DESCRIPTION, LESSON_MATERIAL, courseName, courseDescription FROM lessons,courses WHERE lessons.COURSE_FK = courses.COURSE_ID and courses.courseName = ? order by lessonNumber asc';
+		let sql = 'SELECT * FROM lessons,courses WHERE lessons.COURSE_FK = courses.COURSE_ID and courses.courseName = ? order by lessonNumber asc';
 			let query = connection.query(sql,[req.params.courseName], (err, results2) => {
 				if(err) throw err;
 				// console.log(results);
@@ -161,11 +161,12 @@ module.exports = function(app, passport) {
 	// Assignments/Gradebook================
 	// =====================================
 	app.get('/course/:courseName/gradebook', function(req, res){
-		let sql = 'SELECT * FROM marks,users,assessments WHERE marks.STUDENT_FK=users.id and marks.ASSESSMENT_FK=assessments.ASSESSMENT_ID and users.id = ?';
-    	let query = connection.query(sql, [req.user.id], (err, results) => {
+		let sql = 'SELECT * FROM marks,users,assessments,courses WHERE marks.STUDENT_FK=users.id and marks.ASSESSMENT_FK=assessments.ASSESSMENT_ID and assessments.COURSE_FK = courses.COURSE_ID and users.id = ? and courses.courseName =?';
+    	let query = connection.query(sql, [req.user.id, req.params.courseName], (err, results) => {
         if(err) throw err;
 		// console.log(results);
-		req.flash('info', 'Flashback!');
+		req.flash('info', 'Flashback to reality! There goes net neutrality!');
+		// res.json(results);
 		res.render('gradebook.ejs', {message: req.flash('info'), marks: results}); //get marks for user
     	});
 	});

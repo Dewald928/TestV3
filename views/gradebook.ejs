@@ -15,6 +15,22 @@
     <% if (message.length > 0) { %>
     <div class="alert alert-info"><%= message %></div>
     <% } %>
+
+        <!-- table -->
+        <table class="table">
+            <tr>
+                <th>Assignment</th>
+                <th>Mark</th>
+                <th>Total</th>
+            </tr>
+            <% for(var i=0; i<marks.length;i++){ %>
+                <tr>
+                    <td><%= marks[i].ASSESSMENT_NAME %></td>
+                    <td><%= marks[i].MARK_SCORE %></td>
+                    <td><%= marks[i].ASSESSMENT_MAX_MARK %></td>
+                </tr> 
+            <%} %>
+        </table>
 </div>
 
 </body>
