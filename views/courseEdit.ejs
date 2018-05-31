@@ -1,9 +1,41 @@
-<h1>I want to edit this course</h1>
+<!-- views/profile.ejs -->
+<!doctype html>
+<html>
+<head>
+	<title>TestV2</title>
+    <script src="/scripts/jquery-3.2.1.min.js"></script>
+	<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"> <!-- load bootstrap css -->
+	<link rel="stylesheet" href="/fonts/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css"><!-- load fontawesome -->
+    
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="icon" href="images/raspberry.png" type="image/png">
+</head>
+<body>
 
+    <!-- navbar -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+						<a class="nav-link" href="/profile">Profile <span class="sr-only">(current)</span></a>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="/logout"><span class="fas fa-sign-out-alt "></span> Logout</a></li>
+			</ul>
+		</div>
+	</nav>
 
-<%= course[0].courseName %><br>
-<%= course[0].courseDescription %>
-<table>
+    <div class="page-header text-center">
+        <h1><%= course[0].courseName %></h1>
+        <p class="font-italic"><%= course[0].courseDescription %></p>
+    </div>
+
+    <!-- table -->
+    <table class="table">
         <tr>
             <th>Lesson</th>
             <th>Description</th>
@@ -15,6 +47,41 @@
                 <td><%= course[0].LESSON_MATERIAL %></td>
             </tr> 
         <%} %>
-    
-        
+        <tr>
+            <td><button class="btn btn-primary" data-toggle="modal" data-target="#createLesson" >Create Lesson</button></td>
+            <td></td>
+            <td></td>
+        </tr> 
     </table>
+
+    <!-- Create Lesson Modal -->
+    <div class="modal fade" id="createLesson" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create Lesson</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="#" method="post">
+                    <div class="form-group">
+                        <label>Lesson Name</label><br>
+                        <input type="text" class="form-control" name="lessonName">
+                    </div>
+                    <div class="form-group">
+                        <label>Course Description</label><br>
+                        <textarea  name="lessonDescription" class="w-100"> </textarea>
+                    </div>
+                    <button type="submit" class="btn btn-warning btn-lg w-100">Create</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
