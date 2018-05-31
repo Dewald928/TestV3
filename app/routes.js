@@ -83,7 +83,7 @@ module.exports = function(app, passport) {
 				res.redirect('/profile');
 			} else {
 				res.render('courseView.ejs',{user: req.user, course: results});
-			}
+			};
 			
 		});	
 	});
