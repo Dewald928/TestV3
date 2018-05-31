@@ -1,0 +1,33 @@
+
+.move-area{/*normally use body*/
+    width: 100vw;
+    height: 100vh;
+    /* padding: 10% 45%; */
+}
+#ouBill {
+    width: 170px;
+    height: 250px;
+    text-align: center;
+    display: inline-block;
+    background: url(/images/OuBill.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.eye {
+    position: relative;
+    display: inline-block;
+    border-radius: 50%;
+    height: 28px;
+    width: 28px;
+    background: #CCC;
+}
+.eye:after { /*pupil*/
+    position: absolute;
+    bottom: 17px;
+    right: 10px;
+    width: 10px;
+    height: 10px;
+    background: #000;
+    border-radius: 50%;
+    content: " ";
+}
