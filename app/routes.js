@@ -230,15 +230,15 @@ module.exports = function(app, passport) {
 	//inserts marks for student on assessment
 	app.post('/course/:courseName/assessment/:ASSESSMENT_ID', function(req, res){		
 
-		let sql = 'SELECT STUDENT_FK FROM marks,users WHERE marks.STUDENT_FK = users.id and users.username = ? and marks.ASSESSMENT_FK = ?';
+		let sql = 'SELECT id FROM users WHERE users.username = ?';
 		let query = connection.query(sql, [req.body.username, req.params.ASSESSMENT_ID], (err, results) => {
 			if(err) throw err;
 
-			var STUDENT_FK = results; // moet verander
+			var STUDENT_FK = results[0].id; // moet verander
 			var MARK_SCORE = req.body.MARK_SCORE;
 			var assID = parseInt(req.params.ASSESSMENT_ID);
 
-			let sql = 'INSERT INTO marks (STUDENT_FK, ASSESSMENT_ID, MARK_SCORE) VALUES (?,?,?)';
+			let sql = 'INSERT INTO marks (STUDENT_FK, ASSESSMENT_FK, MARK_SCORE) VALUES (?,?,?)';
 				let query = connection.query(sql, [STUDENT_FK, assID, MARK_SCORE], (err, results) => {
 					if(err) throw err;
 					console.log(results);
