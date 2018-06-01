@@ -177,21 +177,6 @@ module.exports = function(app, passport) {
     	});
 	});
 
-<<<<<<< HEAD
-
-	// =====================================
-	// ============Assignments==============
-	// =====================================
-	app.get('/course/:courseName/assessments', function(req, res){
-		let sql = 'SELECT * FROM assessments';
-    	let query = connection.query(sql, (err, results) => {
-        if(err) throw err;
-		// console.log(results);
-		res.json(results); //get courses for each user
-    	});
-	});
-
-=======
 	// =====================================
 	// ============Assignments==============
 	// =====================================
@@ -202,7 +187,6 @@ module.exports = function(app, passport) {
 			res.render('assessment.ejs', {availibleAssessments: results, courseName:req.params.courseName}); //get marks for user
 		});
 	});
->>>>>>> c5790000ad9dd2b00c39eff5afba27cc40c609d6
 
 	// =====================================
 	// HOME PAGE (with login links) ========

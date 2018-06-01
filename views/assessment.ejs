@@ -44,22 +44,67 @@
     <!-- table -->
     <div class="container">
         
-                <!-- table -->
-                <table class="table">
-                    <tr>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Maximum Marks</th>
-                    </tr>
-                    <% for(var i=0; i<availibleAssessments.length;i++){ %>
-                        <tr>
-                            <td><%= availibleAssessments[i].ASSESSMENT_NAME %></td>
-                            <td><%= availibleAssessments[i].ASSESSMENT_DESCRIPTION %></td>
-                            <td><%= availibleAssessments[i].ASSESSMENT_MAX_MARK %></td>
-                        </tr> 
-                    <%} %>
-                </table>
-        </div>
+        <!-- table -->
+        <table class="table table-hover">
+            <thead>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Maximum Marks</th>
+            </tr>
+            <% for(var i=0; i<availibleAssessments.length;i++){ %>
+                <tr>
+                    <td><%= availibleAssessments[i].ASSESSMENT_NAME %></td>
+                    <td><%= availibleAssessments[i].ASSESSMENT_DESCRIPTION %></td>
+                    <td><%= availibleAssessments[i].ASSESSMENT_MAX_MARK %></td>
+                </tr> 
+            <%} %>
+            <tr>
+                <td></td>
+                <td></td>
+                <td><button class="btn btn-primary" data-toggle="modal" data-target="#createAssessment" >Create Assessment</button></td>
+            </tr> 
+        </table>
+    </div>
         
+    <!-- Create Assessment Modal -->
+    <div class="modal fade" id="createAssessment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create Assessment</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                        <!-- enctype="multipart/form-data"> -->
+                        <form action="/course/<%= courseName %>/addAssessment" method="post"> 
+                            <div class="form-group">
+                                <label>Name</label><br>
+                                <input type="text" class="form-control" name="ASSESSMENT_NAME">
+                            </div>
+                            <div class="form-group">
+                                <label>Description</label><br>
+                                <textarea  name="ASSESSMENT_DESCRIPTION" class="w-100"> </textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Maximum Mark</label><br>
+                                <input type="text" class="form-control" name="ASSESSMENT_MAX_MARK">
+                            </div>
+                            <!-- <div class="form-group">
+                                <label>Material</label><br>
+                                <input type="file" name="filetoupload"><br>
+                            </div> -->
+                            <button type="submit" class="btn btn-warning btn-lg w-100">Create</button>
+                        </form>
+    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+                </div>
+            </div>
+        </div>
 </body>
 </html>
