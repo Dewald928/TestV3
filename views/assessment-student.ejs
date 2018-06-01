@@ -19,16 +19,16 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item ">
-						<a class="nav-link" href="/profile">Profile<span class="sr-only">(current)</span></a>
+						<a class="nav-link" href="/profile">Profile <span class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item">
 						<a class="nav-link" href="/course/<%= courseName %>">Lessons <span class="sr-only">(current)</span></a>
 				</li>
-				<li class="nav-item ">
-						<a class="nav-link" href="/course/<%= courseName %>/assessment">Assessments <span class="sr-only">(current)</span></a>
+				<li class="nav-item active">
+						<a class="nav-link" href="#">Assessments <span class="sr-only">(current)</span></a>
 				</li>
-                <li class="nav-item active">
-                        <a class="nav-link" href="/course/<%= courseName %>/gradebook"> Gradebook<span class="sr-only">(current)</span></a>
+                <li class="nav-item ">
+                        <a class="nav-link" href="/course/<%= courseName %>/gradebook">Gradebook<span class="sr-only">(current)</span></a>
                 </li>
             </ul>
 			<ul class="nav navbar-nav navbar-right">
@@ -43,29 +43,29 @@
 
     <!-- table -->
     <div class="container">
-            <!-- show any messages that come back with authentication -->
-            <% if (message.length > 0) { %>
-            <div class="alert alert-info .alert-dismissible"><%= message %>
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            </div>
-            <% } %>
         
-                <!-- table -->
-                <table class="table">
-                    <tr>
-                        <th>Student</th>
-                        <th>Assessment Name</th>
-                        <th>Mark</th>
-                    </tr>
-                    <% for(var i=0; i<marks.length;i++){ %>
-                        <tr>
-                            <td><%= marks[i].username %></td>
-                            <td><%= marks[i].ASSESSMENT_NAME %></td>
-                            <td><%= marks[i].MARK_SCORE %></td>
-                        </tr> 
-                    <%} %>
-                </table>
-        </div>
+        <!-- table -->
+        <table class="table table-hover">
+            <thead>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Maximum Marks</th>
+                <th></th>
+            </tr>
+            <% for(var i=0; i<availibleAssessments.length;i++){ %>
+                <tr>
+                    <td><%= availibleAssessments[i].ASSESSMENT_NAME %></td>
+                    <td><%= availibleAssessments[i].ASSESSMENT_DESCRIPTION %></td>
+                    <td><%= availibleAssessments[i].ASSESSMENT_MAX_MARK %></td>
+            <%} %>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr> 
+        </table>
+    </div>
         
+
 </body>
 </html>

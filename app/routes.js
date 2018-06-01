@@ -53,10 +53,10 @@ module.exports = function(app, passport) {
 	//post add new course to db
 	app.post('/courses/new', function(req,res){
 		// console.log(req.body);
-		let sql = 'INSERT INTO courses (courseName, courseDescription) VALUES (?,?)';
+		let sql = 'INSERT INTO courses (courseName, courseDescription, userID) VALUES (?,?,?)';
 		let courseName = req.body.courseName;
 		let courseDesc = req.body.courseDescription;
-    	let query = connection.query(sql,[courseName, courseDesc], (err, results) => {
+    	let query = connection.query(sql,[courseName, courseDesc, req.user.id], (err, results) => {
 		if(err) throw err;
 			//add demo lesson
 			let demo = 'demo';
@@ -168,8 +168,8 @@ module.exports = function(app, passport) {
 	//vir students view
 	app.get('/course/:courseName/gradebook', function(req, res){
 		if(req.user.lecturer > 0){
-			let sql = 'SELECT * FROM marks,users,assessments,courses WHERE marks.STUDENT_FK=users.id and marks.ASSESSMENT_FK=assessments.ASSESSMENT_ID and assessments.COURSE_FK = courses.COURSE_ID and users.id = ? and courses.courseName =?';
-			let query = connection.query(sql, [req.user.id, req.params.courseName], (err, results) => {
+			let sql = 'SELECT * FROM users,courses,assessments,marks WHERE assessments.COURSE_FK = courses.COURSE_ID and marks.ASSESSMENT_FK = assessments.ASSESSMENT_ID and marks.STUDENT_FK = users.id	and courses.courseName = ? order by ASSESSMENT_NAME asc';
+			let query = connection.query(sql, [req.params.courseName], (err, results) => {
 			if(err) throw err;
 			// console.log(results);
 			req.flash('info', 'Flashback to reality! There goes net neutrality!');
@@ -196,17 +196,24 @@ module.exports = function(app, passport) {
 		let sql = 'SELECT * FROM assessments,courses WHERE assessments.COURSE_FK = courses.COURSE_ID and courses.courseName =?';
     	let query = connection.query(sql, [req.params.courseName], (err, results) => {
 			if(err) throw err;
-			console.log(results);
-			res.render('assessment.ejs', {availibleAssessments: results, courseName:req.params.courseName}); //get marks for user
+			// console.log(results);
+			if (req.user.lecturer > 0) {
+				res.render('assessment.ejs', {availibleAssessments: results, courseName:req.params.courseName}); //get assessments
+			} else {
+				res.render('assessment-student.ejs', {availibleAssessments: results, courseName:req.params.courseName}); 
+			};
+			
 		});
 	});
 
+
+
 	app.post('/course/:courseName/addAssessment', function(req, res){
-		let sql = 'SELECT COURSE_FK FROM assessments,courses WHERE assessments.COURSE_FK = courses.COURSE_ID and courses.courseName = ?';
+		let sql = 'SELECT COURSE_ID FROM assessments,courses WHERE courses.courseName = ?';
 		let query = connection.query(sql, [req.params.courseName], (err, results) => {
 			if(err) throw err;
 			// console.log(results[0].COURSE_FK);
-			var courseid = results[0].COURSE_FK;
+			var courseid = results[0].COURSE_ID;
 
 				let sql = 'INSERT INTO assessments (COURSE_FK, ASSESSMENT_NAME, ASSESSMENT_DESCRIPTION, ASSESSMENT_MAX_MARK) VALUES (?,?,?,?)';
 				var ASSESSMENT_NAME = req.body.ASSESSMENT_NAME;
@@ -224,17 +231,15 @@ module.exports = function(app, passport) {
 	app.post('/course/:courseName/assessment/:ASSESSMENT_ID', function(req, res){		
 
 		let sql = 'SELECT STUDENT_FK FROM marks,users WHERE marks.STUDENT_FK = users.id and users.username = ? and marks.ASSESSMENT_FK = ?';
-		let query = connection.query(sql, [field.username, req.params.ASSESSMENT_ID], (err, results) => {
+		let query = connection.query(sql, [req.body.username, req.params.ASSESSMENT_ID], (err, results) => {
 			if(err) throw err;
 
 			var STUDENT_FK = results; // moet verander
-			var MARK_SCORE = fields.MARK_SCORE;
-			var ASSESSMENT_ID = req.params.ASSESSMENT_ID;
-			var ASSESSMENT_NAME = fields.ASSESSMENT_NAME;
-			var ASSESSMENT_DESCRIPTION =fields.ASSESSMENT_DESCRIPTION;
-			var ASSESSMENT_MAX_MARK = fields.ASSESSMENT_MAX_MARK;
+			var MARK_SCORE = req.body.MARK_SCORE;
+			var assID = parseInt(req.params.ASSESSMENT_ID);
 
-				let query = connection.query(sql, [courseid, ASSESSMENT_NAME, ASSESSMENT_DESCRIPTION, ASSESSMENT_MAX_MARK], (err, results) => {
+			let sql = 'INSERT INTO marks (STUDENT_FK, ASSESSMENT_ID, MARK_SCORE) VALUES (?,?,?)';
+				let query = connection.query(sql, [STUDENT_FK, assID, MARK_SCORE], (err, results) => {
 					if(err) throw err;
 					console.log(results);
 					res.redirect('/course/'+req.params.courseName);
