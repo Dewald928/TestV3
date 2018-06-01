@@ -62,7 +62,8 @@
                     <td><button class="btn btn-primary-outline" data-toggle="modal" data-target="#editLesson"><span class="fas fa-edit text-left"></span>  <%= course[i].LESSON_NAME %></td></button>                                
                     <td><%= course[i].LESSON_DESCRIPTION %></td>
                     <td><%= course[i].LESSON_MATERIAL %></td>
-                    <td><a href="/course/<%= course[0].courseName %>/downloadlesson/<%= course[i].lessonNumber %>">Download</a></td>
+                    <td><a href="/material/<%= course[0].courseName %>/<%= course[i].LESSON_MATERIAL %>" download>Download</a></td>
+                    <!-- <a href="/course/<%= course[0].courseName %>/downloadlesson/<%= course[i].lessonNumber %>" download>Download</a></td> -->
                 </tr> 
             <%} %>
             <tr>
