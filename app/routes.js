@@ -161,6 +161,18 @@ module.exports = function(app, passport) {
 		});
 	});
 
+	//download lesson material
+	app.get('/course/:courseName/downloadlesson/:lessonNumber', function(req, res){
+		//get course id
+		let sql = 'SELECT COURSE_ID FROM courses WHERE  courses.courseName = ?';
+		let query = connection.query(sql, [req.params.courseName], (err, results) => {
+			if(err) throw err;
+			// console.log(results[0].COURSE_FK);
+			var courseid = results[0].COURSE_ID;
+			var courseLesson = parseInt(req.params.lessonNumber);
+			
+		});
+	});
 	
 	// =====================================
 	// ============Gradebook================
@@ -241,7 +253,7 @@ module.exports = function(app, passport) {
 			let sql = 'INSERT INTO marks (STUDENT_FK, ASSESSMENT_FK, MARK_SCORE) VALUES (?,?,?)';
 				let query = connection.query(sql, [STUDENT_FK, assID, MARK_SCORE], (err, results) => {
 					if(err) throw err;
-					console.log(results);
+					// console.log(results);
 					res.redirect('/course/'+req.params.courseName);
 				});	
 		});
