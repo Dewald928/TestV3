@@ -239,13 +239,12 @@ module.exports = function(app, passport) {
 					console.log(results);
 					res.redirect('/course/'+req.params.courseName);
 				});	
-
 		});
-
-			
-
 	});
 
+	app.get('/course/:courseName/assessment/:ASSESSMENT_ID/updateMarks', function(req, res){		
+		res.render('updateMarks.ejs', {courseName: req.params.courseName, assessmentID:req.params.ASSESSMENT_ID});
+	});
 
 
 

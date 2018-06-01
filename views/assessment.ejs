@@ -57,7 +57,8 @@
                     <td><%= availibleAssessments[i].ASSESSMENT_NAME %></td>
                     <td><%= availibleAssessments[i].ASSESSMENT_DESCRIPTION %></td>
                     <td><%= availibleAssessments[i].ASSESSMENT_MAX_MARK %></td>
-                    <td><button class="btn btn-primary-outline" data-toggle="modal" data-target="#editAssessment" >Update Student Marks</button></td>
+                    <td><a href="/course/<%= courseName %>/assessment/<%= availibleAssessments[i].ASSESSMENT_ID %>/updateMarks">Update Marks</a></td>
+                        <!-- <button class="btn btn-primary-outline" data-toggle="modal" data-target="#updateMarks" >Update Student Marks</button></td> -->
                 </tr> 
             <%} %>
             <tr>
@@ -110,8 +111,8 @@
             </div>
         </div>
         
-    <!-- Edit Lesson Modal -->
-    <div class="modal fade" id="editAssessment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Update Marks Modal -->
+    <div class="modal fade" id="updateMarks" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
@@ -121,32 +122,7 @@
                 </button>
             </div>
             <div class="modal-body">
-
-                <form action="/course/<%= courseName %>/editLesson" method="post" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label>Number</label><br>
-                        <input type="text" class="form-control" name="lessonNumber">
-                    </div>
-                    <div class="form-group">
-                        <label>Name</label><br>
-                        <input type="text" class="form-control" name="LESSON_NAME">
-                    </div>
-                    <div class="form-group">
-                        <label>Description</label><br>
-                        <textarea  name="LESSON_DESCRIPTION" class="w-100"> </textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Material</label><br>
-                        <div class="input-group mb-3">
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="inputGroupFile03">
-                                <label class="custom-file-label text-dark" for="inputGroupFile03">Choose file</label>
-                            </div>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-warning btn-lg w-100">Create</button>
-                </form>
-                
+                <div id="updateMarksBody"></div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -154,6 +130,22 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $( "#addCourseBut" ).on( "click", function( event ) {
+            $.ajax({
+            url: "availableCourses",
+            success: function( result ) {
+                console.log(result);
+                var text = 'Available Courses: <br>'
+                for (let i = 0; i < result.length; i++) {
+                    text = text + '<a class="btn btn-outline-primary"  href="courses/add/' + result[i].COURSE_ID +'" >' + result[i].courseName + '</a>';
+                }
+                    $(updateMarksBody).html(text);
+            }
+        })
+        });
+    </script>
 
 </body>
 </html>
