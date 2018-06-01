@@ -167,6 +167,7 @@ module.exports = function(app, passport) {
 	// =====================================
 	//vir students view
 	app.get('/course/:courseName/gradebook', function(req, res){
+<<<<<<< HEAD
 		if(req.user.lecturer > 0){
 			let sql = 'SELECT * FROM marks,users,assessments,courses WHERE marks.STUDENT_FK=users.id and marks.ASSESSMENT_FK=assessments.ASSESSMENT_ID and assessments.COURSE_FK = courses.COURSE_ID and users.id = ? and courses.courseName =?';
 			let query = connection.query(sql, [req.user.id, req.params.courseName], (err, results) => {
@@ -187,6 +188,16 @@ module.exports = function(app, passport) {
 			});
 		};
 		
+=======
+		let sql = 'SELECT * FROM marks,users,assessments,courses WHERE marks.STUDENT_FK=users.id and marks.ASSESSMENT_FK=assessments.ASSESSMENT_ID and assessments.COURSE_FK = courses.COURSE_ID and users.id = ? and courses.courseName =?';
+    	let query = connection.query(sql, [req.user.id, req.params.courseName], (err, results) => {
+        if(err) throw err;
+		// console.log(results);
+		req.flash('info', 'Flashback to reality! There goes net neutrality!');
+		// res.json(results);
+		res.render('gradebook.ejs', {message: req.flash('info'), marks: results, courseName:req.params.courseName}); //get marks for user
+    	});
+>>>>>>> 579dfafc4cc768fcdeabd83d787adc4eaa6261b1
 	});
 
 	// =====================================
@@ -199,6 +210,7 @@ module.exports = function(app, passport) {
 			res.render('assessment.ejs', {availibleAssessments: results, courseName:req.params.courseName}); //get marks for user
 		});
 	});
+<<<<<<< HEAD
 
 	app.post('/course/:courseName/assessment/create', function(req, res){
 		let sql = 'SELECT COURSE_FK FROM assessments,courses WHERE assessments.COURSE_FK = courses.COURSE_ID and courses.courseName = ?';
@@ -247,6 +259,8 @@ module.exports = function(app, passport) {
 
 
 
+=======
+>>>>>>> 579dfafc4cc768fcdeabd83d787adc4eaa6261b1
 
 	// =====================================
 	// HOME PAGE (with login links) ========
