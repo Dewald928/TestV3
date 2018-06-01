@@ -53,10 +53,10 @@ module.exports = function(app, passport) {
 	//post add new course to db
 	app.post('/courses/new', function(req,res){
 		// console.log(req.body);
-		let sql = 'INSERT INTO courses (courseName, courseDescription) VALUES (?,?)';
+		let sql = 'INSERT INTO courses (courseName, courseDescription, userID) VALUES (?,?,?)';
 		let courseName = req.body.courseName;
 		let courseDesc = req.body.courseDescription;
-    	let query = connection.query(sql,[courseName, courseDesc], (err, results) => {
+    	let query = connection.query(sql,[courseName, courseDesc, req.user.id], (err, results) => {
 		if(err) throw err;
 			//add demo lesson
 			let demo = 'demo';
@@ -202,11 +202,11 @@ module.exports = function(app, passport) {
 	});
 
 	app.post('/course/:courseName/addAssessment', function(req, res){
-		let sql = 'SELECT COURSE_FK FROM assessments,courses WHERE assessments.COURSE_FK = courses.COURSE_ID and courses.courseName = ?';
+		let sql = 'SELECT COURSE_ID FROM assessments,courses WHERE courses.courseName = ?';
 		let query = connection.query(sql, [req.params.courseName], (err, results) => {
 			if(err) throw err;
 			// console.log(results[0].COURSE_FK);
-			var courseid = results[0].COURSE_FK;
+			var courseid = results[0].COURSE_ID;
 
 				let sql = 'INSERT INTO assessments (COURSE_FK, ASSESSMENT_NAME, ASSESSMENT_DESCRIPTION, ASSESSMENT_MAX_MARK) VALUES (?,?,?,?)';
 				var ASSESSMENT_NAME = req.body.ASSESSMENT_NAME;
