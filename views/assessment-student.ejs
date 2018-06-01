@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+	<title>TestV2</title>
+    <script src="/scripts/jquery-3.2.1.min.js"></script>
+	<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"> <!-- load bootstrap css -->
+	<link rel="stylesheet" href="/fonts/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css"><!-- load fontawesome -->
+    
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="icon" href="images/raspberry.png" type="image/png">
+</head>
+<body>
+
+    <!-- navbar -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item ">
+						<a class="nav-link" href="/profile">Profile <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item">
+						<a class="nav-link" href="/course/<%= courseName %>">Lessons <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item active">
+						<a class="nav-link" href="#">Assessments <span class="sr-only">(current)</span></a>
+				</li>
+                <li class="nav-item ">
+                        <a class="nav-link" href="/course/<%= courseName %>/gradebook">Gradebook<span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="/logout"><span class="fas fa-sign-out-alt "></span> Logout</a></li>
+			</ul>
+		</div>
+	</nav>
+
+    <div class="page-header text-center">
+        <h1><%= courseName %></h1>
+    </div>
+
+    <!-- table -->
+    <div class="container">
+        
+        <!-- table -->
+        <table class="table table-hover">
+            <thead>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Maximum Marks</th>
+                <th></th>
+            </tr>
+            <% for(var i=0; i<availibleAssessments.length;i++){ %>
+                <tr>
+                    <td><%= availibleAssessments[i].ASSESSMENT_NAME %></td>
+                    <td><%= availibleAssessments[i].ASSESSMENT_DESCRIPTION %></td>
+                    <td><%= availibleAssessments[i].ASSESSMENT_MAX_MARK %></td>
+            <%} %>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr> 
+        </table>
+    </div>
+        
+
+</body>
+</html>
