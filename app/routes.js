@@ -167,6 +167,28 @@ module.exports = function(app, passport) {
 	// =====================================
 	//vir students view
 	app.get('/course/:courseName/gradebook', function(req, res){
+<<<<<<< HEAD
+		if(req.user.lecturer > 0){
+			let sql = 'SELECT * FROM marks,users,assessments,courses WHERE marks.STUDENT_FK=users.id and marks.ASSESSMENT_FK=assessments.ASSESSMENT_ID and assessments.COURSE_FK = courses.COURSE_ID and users.id = ? and courses.courseName =?';
+			let query = connection.query(sql, [req.user.id, req.params.courseName], (err, results) => {
+			if(err) throw err;
+			// console.log(results);
+			req.flash('info', 'Flashback to reality! There goes net neutrality!');
+			// res.json(results);
+			res.render('gradebook.ejs', {message: req.flash('info'), marks: results, courseName:req.params.courseName}); //get marks for user
+			});
+		} else {
+			let sql = 'SELECT * FROM marks,users,assessments,courses WHERE marks.STUDENT_FK=users.id and marks.ASSESSMENT_FK=assessments.ASSESSMENT_ID and assessments.COURSE_FK = courses.COURSE_ID and users.id = ? and courses.courseName =?';
+			let query = connection.query(sql, [req.user.id, req.params.courseName], (err, results) => {
+			if(err) throw err;
+			// console.log(results);
+			req.flash('info', 'Flashback to reality! There goes net neutrality!');
+			// res.json(results);
+			res.render('gradebook-student.ejs', {message: req.flash('info'), marks: results, courseName:req.params.courseName}); //get marks for user
+			});
+		};
+		
+=======
 		let sql = 'SELECT * FROM marks,users,assessments,courses WHERE marks.STUDENT_FK=users.id and marks.ASSESSMENT_FK=assessments.ASSESSMENT_ID and assessments.COURSE_FK = courses.COURSE_ID and users.id = ? and courses.courseName =?';
     	let query = connection.query(sql, [req.user.id, req.params.courseName], (err, results) => {
         if(err) throw err;
@@ -175,10 +197,11 @@ module.exports = function(app, passport) {
 		// res.json(results);
 		res.render('gradebook.ejs', {message: req.flash('info'), marks: results, courseName:req.params.courseName}); //get marks for user
     	});
+>>>>>>> 579dfafc4cc768fcdeabd83d787adc4eaa6261b1
 	});
 
 	// =====================================
-	// ============Assignments==============
+	// ============Assessments==============
 	// =====================================
 	app.get('/course/:courseName/assessment', function(req, res){
 		let sql = 'SELECT * FROM assessments,courses WHERE assessments.COURSE_FK = courses.COURSE_ID and courses.courseName =?';
@@ -188,6 +211,57 @@ module.exports = function(app, passport) {
 			res.render('assessment.ejs', {availibleAssessments: results, courseName:req.params.courseName}); //get marks for user
 		});
 	});
+<<<<<<< HEAD
+
+	app.post('/course/:courseName/assessment/create', function(req, res){
+		let sql = 'SELECT COURSE_FK FROM assessments,courses WHERE assessments.COURSE_FK = courses.COURSE_ID and courses.courseName = ?';
+		let query = connection.query(sql, [req.params.courseName], (err, results) => {
+			if(err) throw err;
+			// console.log(results[0].COURSE_FK);
+			var courseid = results[0].COURSE_FK;
+
+				let sql = 'INSERT INTO assessments (COURSE_FK, ASSESSMENT_NAME, ASSESSMENT_DESCRIPTION, ASSESSMENT_MAX_MARK) VALUES (?,?,?,?)';
+				var ASSESSMENT_NAME = fields.ASSESSMENT_NAME;
+				var ASSESSMENT_DESCRIPTION =fields.ASSESSMENT_DESCRIPTION;
+				var ASSESSMENT_MAX_MARK = fields.ASSESSMENT_MAX_MARK;
+				let query = connection.query(sql, [courseid, ASSESSMENT_NAME, ASSESSMENT_DESCRIPTION, ASSESSMENT_MAX_MARK], (err, results) => {
+					if(err) throw err;
+					console.log(results);
+					res.redirect('/course/'+req.params.courseName);
+				});		
+		});
+	});
+
+	//inserts marks for student on assessment
+	app.post('/course/:courseName/assessment/:ASSESSMENT_ID', function(req, res){		
+
+		let sql = 'SELECT STUDENT_FK FROM marks,users WHERE marks.STUDENT_FK = users.id and users.username = ? and marks.ASSESSMENT_FK = ?';
+		let query = connection.query(sql, [field.username, req.params.ASSESSMENT_ID], (err, results) => {
+			if(err) throw err;
+
+			var STUDENT_FK = results; // moet verander
+			var MARK_SCORE = fields.MARK_SCORE;
+			var ASSESSMENT_ID = req.params.ASSESSMENT_ID;
+			var ASSESSMENT_NAME = fields.ASSESSMENT_NAME;
+			var ASSESSMENT_DESCRIPTION =fields.ASSESSMENT_DESCRIPTION;
+			var ASSESSMENT_MAX_MARK = fields.ASSESSMENT_MAX_MARK;
+
+				let query = connection.query(sql, [courseid, ASSESSMENT_NAME, ASSESSMENT_DESCRIPTION, ASSESSMENT_MAX_MARK], (err, results) => {
+					if(err) throw err;
+					console.log(results);
+					res.redirect('/course/'+req.params.courseName);
+				});	
+
+		});
+
+			
+
+	});
+
+
+
+=======
+>>>>>>> 579dfafc4cc768fcdeabd83d787adc4eaa6261b1
 
 	// =====================================
 	// HOME PAGE (with login links) ========
