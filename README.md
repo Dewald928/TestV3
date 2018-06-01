@@ -1,8 +1,8 @@
-# Complete Guide to Node Authentication with MySQL
+# Complete Guide to TestV2 with MySQL
 
 
 
-Code for the entire scotch.io tutorial series: Complete Guide to Node Authentication with MongoDB
+Complete Guide to Node Authentication with MySQL
 
 Current version database is ported to MySQL
 
@@ -21,5 +21,4 @@ If you would like to download the code and try it for yourself:
 
 
 Licence: 1
-# TestV3
 # TestV3
