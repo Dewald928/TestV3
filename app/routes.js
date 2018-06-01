@@ -168,8 +168,8 @@ module.exports = function(app, passport) {
 	//vir students view
 	app.get('/course/:courseName/gradebook', function(req, res){
 		if(req.user.lecturer > 0){
-			let sql = 'SELECT * FROM marks,users,assessments,courses WHERE marks.STUDENT_FK=users.id and marks.ASSESSMENT_FK=assessments.ASSESSMENT_ID and assessments.COURSE_FK = courses.COURSE_ID and users.id = ? and courses.courseName =?';
-			let query = connection.query(sql, [req.user.id, req.params.courseName], (err, results) => {
+			let sql = 'SELECT * FROM users,courses,assessments,marks WHERE assessments.COURSE_FK = courses.COURSE_ID and marks.ASSESSMENT_FK = assessments.ASSESSMENT_ID and marks.STUDENT_FK = users.id	and courses.courseName = ? order by ASSESSMENT_NAME asc';
+			let query = connection.query(sql, [req.params.courseName], (err, results) => {
 			if(err) throw err;
 			// console.log(results);
 			req.flash('info', 'Flashback to reality! There goes net neutrality!');
@@ -200,6 +200,8 @@ module.exports = function(app, passport) {
 			res.render('assessment.ejs', {availibleAssessments: results, courseName:req.params.courseName}); //get marks for user
 		});
 	});
+
+
 
 	app.post('/course/:courseName/addAssessment', function(req, res){
 		let sql = 'SELECT COURSE_ID FROM assessments,courses WHERE courses.courseName = ?';
