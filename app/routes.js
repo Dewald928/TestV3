@@ -182,8 +182,9 @@ module.exports = function(app, passport) {
 	// =====================================
 	app.get('/course/:courseName/assessment', function(req, res){
 		let sql = 'SELECT * FROM assessments,courses WHERE assessments.COURSE_FK = courses.COURSE_ID and courses.courseName =?';
-    	let query = connection.query(sql, [req.user.id, req.params.courseName], (err, results) => {
+    	let query = connection.query(sql, [req.params.courseName], (err, results) => {
 			if(err) throw err;
+			console.log(results);
 			res.render('assessment.ejs', {availibleAssessments: results, courseName:req.params.courseName}); //get marks for user
 		});
 	});
