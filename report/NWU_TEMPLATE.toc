@@ -2,10 +2,6 @@
 \contentsline {section}{\numberline {2}Background}{1}{section.2}
 \contentsline {subsection}{\numberline {2.1}MySQL}{1}{subsection.2.1}
 \contentsline {subsection}{\numberline {2.2}Node.js}{1}{subsection.2.2}
-\contentsline {subsection}{\numberline {2.3}HTML}{1}{subsection.2.3}
-\contentsline {subsection}{\numberline {2.4}CSS}{1}{subsection.2.4}
-\contentsline {subsection}{\numberline {2.5}Javascript}{1}{subsection.2.5}
-<<<<<<< HEAD
 \contentsline {section}{\numberline {3}Database Structure}{2}{section.3}
 \contentsline {section}{\numberline {4}Front-end}{3}{section.4}
 \contentsline {subsection}{\numberline {4.1}Login and Register Interface}{3}{subsection.4.1}
@@ -16,29 +12,13 @@
 \contentsline {subsection}{\numberline {5.2}Courses}{8}{subsection.5.2}
 \contentsline {subsection}{\numberline {5.3}Lessons}{9}{subsection.5.3}
 \contentsline {subsection}{\numberline {5.4}Assessments}{10}{subsection.5.4}
-\contentsline {subsection}{\numberline {5.5}Grade-book}{11}{subsection.5.5}
-\contentsline {section}{\numberline {6}Conclusion}{12}{section.6}
-\contentsline {subsection}{\numberline {6.1}Strenghts}{12}{subsection.6.1}
-\contentsline {subsection}{\numberline {6.2}Flaws}{12}{subsection.6.2}
-\contentsline {subsection}{\numberline {6.3}Improvements}{12}{subsection.6.3}
-\contentsline {subsection}{\numberline {6.4}Techniques Learned}{13}{subsection.6.4}
-\contentsline {section}{References}{13}{subsection.6.4}
-=======
-\contentsline {section}{\numberline {3}Database}{1}{section.3}
-\contentsline {section}{\numberline {4}Front-end}{1}{section.4}
-\contentsline {subsection}{\numberline {4.1}Login and Register Interface}{1}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Lecturer Interface}{2}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}Student Interface}{5}{subsection.4.3}
-\contentsline {section}{\numberline {5}Back-end}{6}{section.5}
-\contentsline {subsection}{\numberline {5.1}Sign up and Login}{6}{subsection.5.1}
-\contentsline {subsection}{\numberline {5.2}Courses}{7}{subsection.5.2}
-\contentsline {subsection}{\numberline {5.3}Lessons}{8}{subsection.5.3}
-\contentsline {subsection}{\numberline {5.4}Assessments}{9}{subsection.5.4}
-\contentsline {subsection}{\numberline {5.5}Grade-book}{9}{subsection.5.5}
-\contentsline {section}{\numberline {6}Conclusion}{11}{section.6}
-\contentsline {subsection}{\numberline {6.1}Strengths}{11}{subsection.6.1}
-\contentsline {subsection}{\numberline {6.2}Flaws}{11}{subsection.6.2}
-\contentsline {subsection}{\numberline {6.3}Improvements}{11}{subsection.6.3}
-\contentsline {subsection}{\numberline {6.4}Techniques Learned}{11}{subsection.6.4}
-\contentsline {section}{References}{11}{subsection.6.4}
->>>>>>> a996558f8669738c04ad45915fcc0079d4103839
+\contentsline {subsection}{\numberline {5.5}Courses}{13}{subsection.5.5}
+\contentsline {subsection}{\numberline {5.6}Lessons}{14}{subsection.5.6}
+\contentsline {subsection}{\numberline {5.7}Assessments}{15}{subsection.5.7}
+\contentsline {subsection}{\numberline {5.8}Grade-book}{16}{subsection.5.8}
+\contentsline {section}{\numberline {6}Conclusion}{18}{section.6}
+\contentsline {subsection}{\numberline {6.1}Strengths}{18}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}Flaws}{18}{subsection.6.2}
+\contentsline {subsection}{\numberline {6.3}Improvements}{18}{subsection.6.3}
+\contentsline {subsection}{\numberline {6.4}Techniques Learned}{18}{subsection.6.4}
+\contentsline {section}{References}{18}{subsection.6.4}
