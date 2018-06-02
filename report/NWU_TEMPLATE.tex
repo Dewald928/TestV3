@@ -211,25 +211,32 @@ Submitted in pursuit of the degree\\\\
 \section{Database}
 
 \section{Front-end}
-
+The following section provide images of the website's user interface to illustrate the front-end of the completed site.
 \subsection{Login and Register Interface}
-\begin{figure}[H]
-\centering
-\fbox{\includegraphics[scale = 0.6]{./images/login.png}}
-\caption{Login page}
-\label{login}
-\end{figure}
+The first page any user encounters is the login page (figure \ref{login}). If the current user does not have and account, the \textit{Signup}-link can be used to browse to the registration page (figure \ref{register}).
+
+\newcommand{\picScale}{0.55}
+\newcommand{\minipageWidth}{0.46\textwidth}
 
 \begin{figure}[H]
-\centering
-\fbox{\includegraphics[scale = 0.6]{./images/register.png}}
-\caption{Register page}
-\label{register}
+\minipage[t]{\minipageWidth}
+	\centering
+	\fbox{\includegraphics[scale = 0.6]{./images/login.png}}
+	\caption{Login page}
+	\label{login}
+\endminipage\hfill
+\minipage[t]{\minipageWidth}
+	\centering
+	\fbox{\includegraphics[scale = 0.6]{./images/register.png}}
+	\caption{Register page}
+	\label{register}
+\endminipage
 \end{figure}
 
 
 
 \subsection{Lecturer Interface}
+Upon signing in, lecturers are routed to the profile page where they can choose to create or add courses (figures \ref{createCourse} and \ref{addCourse}). If the lecturer clicks on one of the added courses, he is taken to a corresponding section for managing the particular course.
 
 \begin{figure}[H]
 \centering
@@ -238,8 +245,6 @@ Submitted in pursuit of the degree\\\\
 \label{lecturerProfile}
 \end{figure}
 
-\newcommand{\picScale}{0.55}
-\newcommand{\minipageWidth}{0.46\textwidth}
 
 \begin{figure}[H]
 \minipage[t]{\minipageWidth}
@@ -257,6 +262,8 @@ Submitted in pursuit of the degree\\\\
 	\label{addCourse}
 \endminipage
 \end{figure}
+
+Figure \ref{lecturerLessons} shows the page for creating and deleting lessons. The page shown in figure \ref{lecturerAssessments} is used to create new assessments (figure \ref{lecturerCreateAssessment}) and update student marks (figure \ref{lecturerUpdateMarks}). The page in figure \ref{lecturerGradebook} is used to view each student's marks for every assessment.
 
 \begin{figure}[H]
 \centering
@@ -299,6 +306,8 @@ Submitted in pursuit of the degree\\\\
 
 
 \subsection{Student Interface}
+Students have the same interface as lecturers, except for the editing functionality. No add, update of delete privileges are given to students, aside from the option of adding courses to their site. The profile page for students are given in figure \ref{studentProfile}, but all other examples of student pages are omitted in favour of brevity.
+
 \begin{figure}[H]
 \centering
 \fbox{\includegraphics[scale = 0.6]{./images/studentProfile.png}}
