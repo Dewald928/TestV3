@@ -82,13 +82,10 @@ module.exports = function(app, passport) {
 	// =====================================
 	//open individual course and it's lessons for student
 	app.get('/course/:courseName', function(req,res){
-		// console.log(req.params.courseName);
-		//*********************should be lecturer who created the course that only he can edit******
 		//select course and it's corresponding lessons
 		let sql = 'SELECT * FROM lessons,courses WHERE lessons.COURSE_FK = courses.COURSE_ID and courses.courseName = ? order by lessonNumber asc';
 			let query = connection.query(sql,[req.params.courseName], (err, results2) => {
 				if(err) throw err;
-				// console.log(results);
 				if(isEmpty(results2)) {
 					if(req.user.lecturer > 0) {
 						res.redirect('/profile');//*moet course object paas maar is nie een
