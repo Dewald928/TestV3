@@ -81,7 +81,7 @@
 \author{ \Large \bf by: \\ \Large\bf
 \begin{tabular}{l  r}
 Jacques Beukes & 26028107\\
-Dewald Krynauw & ********\\
+Dewald Krynauw & 26013835
 \end{tabular}\\\\
 Submitted in pursuit of the degree\\\\
 \bf BACHELOR OF ENGINEERING\\\\
@@ -183,13 +183,13 @@ Submitted in pursuit of the degree\\\\
 %*********************************************************************************
 
 \section*{\Large{Abbreviations}}
-%\begin{center}
-%\begin{tabular}{l l}
-%PWM & Pulse Width Modulation\\
-%RPM & Revolutions Per Minute\\
-%PI & Proportional-Integral\\
-%\end{tabular}
-%\end{center}
+\begin{center}
+\begin{tabular}{l l}
+ERD & Entity Relationship Diagram\\
+DBMS & Datbase Management System\\
+SQL & Structured Query Language\\
+\end{tabular}
+\end{center}
 
 \listoffigures
 
@@ -203,22 +203,31 @@ Submitted in pursuit of the degree\\\\
 \pagenumbering{arabic}
 
 \section{Introduction}
-In this practical, an e-learning website is created to serve as a platform for communicating course material and evaluation results between lecturers and students. This documents is the report for this practical. It contains a description of the website's database, front-end and back-end structure.
+In this practical, an e-learning website is created to serve as a platform for communicating course material and evaluation results between lecturers and students. This document is the report for the practical. It contains a description of the website's database, front-end and back-end structure.
 
 
 \section{Background}
 
-\subsection{mySQL}
+\subsection{MySQL}
+MySQL is a common open-source relational database management system (DBMS). Like most DBMS, MySQL follows a client-server approach to maintain the database. A clients connects to a server and interacts with the database by sending SQL commands to the server. A corresponding MySQL Node package was used by the webserver to interface with the database.
+
 
 \subsection{Node.js}
+Node.js is an open-source JavaScript runtime built on Chrome's V8 JavaScript engine. In other words, it is a cross-platform environment that executes JavaScript code out of the browser. It uses an event-driven, non-blocking I/O model that makes it lightweight and efficient.
 
-\subsection{HTML}
+The webserver of this practical is implemented in Node. Libraries are dubbed as packages in the Node environment. Node's package management system (NPM) are used for the management of server packages.
 
-\subsection{CSS}
 
-\subsection{Javascript}
+\pagebreak
+\section{Database Structure}
+An Entity Relationship Diagram (ERD) of the website's database structure is provided in figure \ref{model}.
 
-\section{Database}
+\begin{figure}[H]
+\centering
+\includegraphics[scale = 0.95,trim = {0 10cm 6cm 2.5cm},clip]{./images/model.pdf} %lbrt
+\caption{Database ERD}
+\label{model}
+\end{figure}
 
 \section{Front-end}
 The following section provide images of the website's user interface to illustrate the front-end of the completed site.
@@ -325,9 +334,78 @@ Students have the same interface as lecturers, except for the editing functional
 \label{studentProfile}
 \end{figure}
 
-
-
+\pagebreak
 \section{Back-end}
+\subsection{Sign up and Login}
+The 'passport' package in Nodejs allows the site to handle sessions as well as cookies in an organised way. The session stores the current user's personal info inside his/her browser to allow for a personalised site.\\
+The 'bcrypt' package allows the passwords to be encrypted in the database with the sha256 algorithm. This ensures that the system administrators can enter into the user's sites.\\
+Figures \ref{cLocalSignup} and \ref{cLocallogin} can be summarised as, insert new user into database with encrypted password. The user logging in gets flashed error messages; should the details entered be wrong.
+
+
+\begin{figure}[H]
+\centering
+\fbox{\includegraphics[width = 0.9\textwidth]{./images/cLocalSignup}}
+\caption{Code: Local Sign-up}
+\label{cLocalSignup}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\fbox{\includegraphics[width = 0.95\textwidth]{./images/cLocalLogin}}
+\caption{Code: Local Login}
+\label{cLocallogin}
+\end{figure}
+
+\subsection{Courses}
+Courses can be created and edited by lecturers, whereas students can only view the courses. Figure \ref{cPostcourse} shows how a new course is added to the database. Figure \ref{ccourses} shows how the course and all of its content is retrieved as a JSON object from the database and rendered to the user.
+
+\begin{figure}[H]
+\centering
+\fbox{\includegraphics[width = 0.95\textwidth]{./images/cPostCourse}}
+\caption{Code: Create new course}
+\label{cPostcourse}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\fbox{\includegraphics[width = 0.95\textwidth]{./images/cCourses}}
+\caption{Code: Get Courses}
+\label{ccourses}
+\end{figure}
+
+\subsection{Lessons}
+The code in Figure \ref{cLessons} shows the post request when the lecturer creates a new lesson. The details of of the lesson is added with the files and are sent to the server and database for later retrieval.
+
+\begin{figure}[H]
+\centering
+\fbox{\includegraphics[width = \textwidth]{./images/clessons}}
+\caption{Code: Create Lessons}
+\label{cLessons}
+\end{figure}
+
+
+\subsection{Assessments}
+The lecturer can add assessments to a course and enter the marks of the students for a specific assessment. Figure \ref{cAses} below shows how a new assessment is posted to the database and how marks are inserted for a specific user.
+
+\begin{figure}[H]
+\centering
+\fbox{\includegraphics[width = \textwidth]{./images/cAssess}}
+\caption{Code: Create and Update Marks for Assessments}
+\label{cAses}
+\end{figure}
+
+
+
+\subsection{Grade-book}
+Lastly the grade-book is split into two types, one for students and one for lecturers. The student grade book only gets the student's mark for all the assessments in that course. The lecturer's grade book show all the students and their respective mark for all of the assessments. 
+
+\begin{figure}[H]
+\centering
+\fbox{\includegraphics[width = \textwidth]{./images/cGrade}}
+\caption{Code: Grade book}
+\label{cGrade}
+\end{figure}
+
 
 %\begin{figure}[H]
 %\centering
