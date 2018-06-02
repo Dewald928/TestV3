@@ -228,15 +228,9 @@ node_modules/
 # Misc
 ######
 config/database.js
-report/NWU_TEMPLATE.pdf
-report/NWU_TEMPLATE.aux
-report/NWU_TEMPLATE.lof
 report/NWU_TEMPLATE.out
-report/NWU_TEMPLATE.synctex.gz
 report/NWU_TEMPLATE.toc
-*.pdf
 report/NWU_TEMPLATE.pdf
-*.lof
 report/NWU_TEMPLATE.lof
 report/NWU_TEMPLATE.aux
 report/NWU_TEMPLATE.synctex.gz
