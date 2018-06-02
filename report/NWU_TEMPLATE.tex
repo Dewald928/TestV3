@@ -340,61 +340,7 @@ The 'passport' package in Nodejs allows the site to handle sessions as well as c
 The 'bcrypt' package allows the passwords to be encrypted in the database with the sha256 algorithm. This ensures that the system administrators can enter into the user's sites.\\
 Figures \ref{cLocalSignup} and \ref{cLocallogin} can be summarised as, insert new user into database with encrypted password. The user logging in gets flashed error messages; should the details entered be wrong.
 <<<<<<< HEAD
-
-
-\begin{figure}[H]
-\centering
-\fbox{\includegraphics[width = 0.9\textwidth]{./images/cLocalSignup}}
-\caption{Code: Local Sign-up}
-\label{cLocalSignup}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\fbox{\includegraphics[width = 0.95\textwidth]{./images/cLocalLogin}}
-\caption{Code: Local Login}
-\label{cLocallogin}
-\end{figure}
-
-\subsection{Courses}
-Courses can be created and edited by lecturers, whereas students can only view the courses. Figure \ref{cPostcourse} shows how a new course is added to the database. Figure \ref{ccourses} shows how the course and all of its content is retrieved as a JSON object from the database and rendered to the user.
-
-\begin{figure}[H]
-\centering
-\fbox{\includegraphics[width = 0.95\textwidth]{./images/cPostCourse}}
-\caption{Code: Create new course}
-\label{cPostcourse}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\fbox{\includegraphics[width = 0.95\textwidth]{./images/cCourses}}
-\caption{Code: Get Courses}
-\label{ccourses}
-\end{figure}
-
-\subsection{Lessons}
-The code in Figure \ref{cLessons} shows the post request when the lecturer creates a new lesson. The details of of the lesson is added with the files and are sent to the server and database for later retrieval.
-
-\begin{figure}[H]
-\centering
-\fbox{\includegraphics[width = \textwidth]{./images/clessons}}
-\caption{Code: Create Lessons}
-\label{cLessons}
-\end{figure}
-
-
-\subsection{Assessments}
-The lecturer can add assessments to a course and enter the marks of the students for a specific assessment. Figure \ref{cAses} below shows how a new assessment is posted to the database and how marks are inserted for a specific user.
-
-\begin{figure}[H]
-\centering
-\fbox{\includegraphics[width = \textwidth]{./images/cAssess}}
-\caption{Code: Create and Update Marks for Assessments}
-\label{cAses}
-\end{figure}
-
-
+<<<<<<< HEAD
 =======
 
 
@@ -451,7 +397,117 @@ The lecturer can add assessments to a course and enter the marks of the students
 \end{figure}
 
 
+=======
+>>>>>>> 964572605eb935cefc43296bedd5af14ec12e368
+
+
+\begin{figure}[H]
+\centering
+\fbox{\includegraphics[width = 0.9\textwidth]{./images/cLocalSignup}}
+\caption{Code: Local Sign-up}
+\label{cLocalSignup}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\fbox{\includegraphics[width = 0.95\textwidth]{./images/cLocalLogin}}
+\caption{Code: Local Login}
+\label{cLocallogin}
+\end{figure}
+
+\subsection{Courses}
+Courses can be created and edited by lecturers, whereas students can only view the courses. Figure \ref{cPostcourse} shows how a new course is added to the database. Figure \ref{ccourses} shows how the course and all of its content is retrieved as a JSON object from the database and rendered to the user.
+
+\begin{figure}[H]
+\centering
+\fbox{\includegraphics[width = 0.95\textwidth]{./images/cPostCourse}}
+\caption{Code: Create new course}
+\label{cPostcourse}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\fbox{\includegraphics[width = 0.95\textwidth]{./images/cCourses}}
+\caption{Code: Get Courses}
+\label{ccourses}
+\end{figure}
+
+\subsection{Lessons}
+The code in Figure \ref{cLessons} shows the post request when the lecturer creates a new lesson. The details of of the lesson is added with the files and are sent to the server and database for later retrieval.
+
+\begin{figure}[H]
+\centering
+\fbox{\includegraphics[width = \textwidth]{./images/clessons}}
+\caption{Code: Create Lessons}
+\label{cLessons}
+\end{figure}
+
+
+\subsection{Assessments}
+The lecturer can add assessments to a course and enter the marks of the students for a specific assessment. Figure \ref{cAses} below shows how a new assessment is posted to the database and how marks are inserted for a specific user.
+
+\begin{figure}[H]
+\centering
+\fbox{\includegraphics[width = \textwidth]{./images/cAssess}}
+\caption{Code: Create and Update Marks for Assessments}
+\label{cAses}
+\end{figure}
+
+
 >>>>>>> a996558f8669738c04ad45915fcc0079d4103839
+
+\begin{figure}[H]
+\centering
+\fbox{\includegraphics[width = 0.9\textwidth]{./images/cLocalSignup}}
+\caption{Code: Local Sign-up}
+\label{cLocalSignup}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\fbox{\includegraphics[width = 0.95\textwidth]{./images/cLocalLogin}}
+\caption{Code: Local Login}
+\label{cLocallogin}
+\end{figure}
+
+\subsection{Courses}
+Courses can be created and edited by lecturers, whereas students can only view the courses. Figure \ref{cPostcourse} shows how a new course is added to the database. Figure \ref{ccourses} shows how the course and all of its content is retrieved as a JSON object from the database and rendered to the user.
+
+\begin{figure}[H]
+\centering
+\fbox{\includegraphics[width = 0.95\textwidth]{./images/cPostCourse}}
+\caption{Code: Create new course}
+\label{cPostcourse}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\fbox{\includegraphics[width = 0.95\textwidth]{./images/cCourses}}
+\caption{Code: Get Courses}
+\label{ccourses}
+\end{figure}
+
+\subsection{Lessons}
+The code in Figure \ref{cLessons} shows the post request when the lecturer creates a new lesson. The details of of the lesson is added with the files and are sent to the server and database for later retrieval.
+
+\begin{figure}[H]
+\centering
+\fbox{\includegraphics[width = \textwidth]{./images/clessons}}
+\caption{Code: Create Lessons}
+\label{cLessons}
+\end{figure}
+
+
+\subsection{Assessments}
+The lecturer can add assessments to a course and enter the marks of the students for a specific assessment. Figure \ref{cAses} below shows how a new assessment is posted to the database and how marks are inserted for a specific user.
+
+\begin{figure}[H]
+\centering
+\fbox{\includegraphics[width = \textwidth]{./images/cAssess}}
+\caption{Code: Create and Update Marks for Assessments}
+\label{cAses}
+\end{figure}
+
 
 \subsection{Grade-book}
 Lastly the grade-book is split into two types, one for students and one for lecturers. The student grade book only gets the student's mark for all the assessments in that course. The lecturer's grade book show all the students and their respective mark for all of the assessments. 
