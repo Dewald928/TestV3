@@ -1,21 +1,21 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
 \BOOKMARK [1][-]{section.2}{Background}{}% 2
-\BOOKMARK [2][-]{subsection.2.1}{mySQL}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.1}{MySQL}{section.2}% 3
 \BOOKMARK [2][-]{subsection.2.2}{Node.js}{section.2}% 4
-\BOOKMARK [2][-]{subsection.2.3}{HTML}{section.2}% 5
-\BOOKMARK [2][-]{subsection.2.4}{CSS}{section.2}% 6
-\BOOKMARK [2][-]{subsection.2.5}{Javascript}{section.2}% 7
-\BOOKMARK [1][-]{section.3}{Database}{}% 8
-\BOOKMARK [1][-]{section.4}{Front-end}{}% 9
-\BOOKMARK [2][-]{subsection.4.1}{Login and Register Interface}{section.4}% 10
-\BOOKMARK [2][-]{subsection.4.2}{Lecturer Interface}{section.4}% 11
-\BOOKMARK [2][-]{subsection.4.3}{Student Interface}{section.4}% 12
-\BOOKMARK [1][-]{section.5}{Back-end}{}% 13
-\BOOKMARK [2][-]{subsection.5.1}{Sign up and Login}{section.5}% 14
-\BOOKMARK [2][-]{subsection.5.2}{Courses}{section.5}% 15
-\BOOKMARK [2][-]{subsection.5.3}{Lessons}{section.5}% 16
-\BOOKMARK [2][-]{subsection.5.4}{Assessments}{section.5}% 17
-\BOOKMARK [2][-]{subsection.5.5}{Grade-book}{section.5}% 18
+\BOOKMARK [1][-]{section.3}{Database Structure}{}% 5
+\BOOKMARK [1][-]{section.4}{Front-end}{}% 6
+\BOOKMARK [2][-]{subsection.4.1}{Login and Register Interface}{section.4}% 7
+\BOOKMARK [2][-]{subsection.4.2}{Lecturer Interface}{section.4}% 8
+\BOOKMARK [2][-]{subsection.4.3}{Student Interface}{section.4}% 9
+\BOOKMARK [1][-]{section.5}{Back-end}{}% 10
+\BOOKMARK [2][-]{subsection.5.1}{Sign up and Login}{section.5}% 11
+\BOOKMARK [2][-]{subsection.5.2}{Courses}{section.5}% 12
+\BOOKMARK [2][-]{subsection.5.3}{Lessons}{section.5}% 13
+\BOOKMARK [2][-]{subsection.5.4}{Assessments}{section.5}% 14
+\BOOKMARK [2][-]{subsection.5.5}{Courses}{section.5}% 15
+\BOOKMARK [2][-]{subsection.5.6}{Lessons}{section.5}% 16
+\BOOKMARK [2][-]{subsection.5.7}{Assessments}{section.5}% 17
+\BOOKMARK [2][-]{subsection.5.8}{Grade-book}{section.5}% 18
 \BOOKMARK [1][-]{section.6}{Conclusion}{}% 19
 \BOOKMARK [2][-]{subsection.6.1}{Strengths}{section.6}% 20
 \BOOKMARK [2][-]{subsection.6.2}{Flaws}{section.6}% 21
