@@ -4,11 +4,16 @@
 \contentsline {subsection}{\numberline {3.1}Login and Register Interface}{1}{subsection.3.1}
 \contentsline {subsection}{\numberline {3.2}Student Interface}{2}{subsection.3.2}
 \contentsline {subsection}{\numberline {3.3}Lecturer Interface}{3}{subsection.3.3}
-\contentsline {section}{\numberline {4}Back-end}{4}{section.4}
-\contentsline {section}{\numberline {5}Database}{4}{section.5}
-\contentsline {section}{\numberline {6}Conclusion}{4}{section.6}
-\contentsline {subsection}{\numberline {6.1}Strenghts}{4}{subsection.6.1}
-\contentsline {subsection}{\numberline {6.2}Flaws}{4}{subsection.6.2}
-\contentsline {subsection}{\numberline {6.3}Improvements}{4}{subsection.6.3}
-\contentsline {subsection}{\numberline {6.4}Techniques Learned}{4}{subsection.6.4}
-\contentsline {section}{References}{4}{subsection.6.4}
+\contentsline {section}{\numberline {4}Back-end}{5}{section.4}
+\contentsline {subsection}{\numberline {4.1}Sign up and Login}{5}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Courses}{6}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Lessons}{7}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}Assessments}{8}{subsection.4.4}
+\contentsline {subsection}{\numberline {4.5}Grade-book}{9}{subsection.4.5}
+\contentsline {section}{\numberline {5}Database}{10}{section.5}
+\contentsline {section}{\numberline {6}Conclusion}{10}{section.6}
+\contentsline {subsection}{\numberline {6.1}Strenghts}{10}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}Flaws}{10}{subsection.6.2}
+\contentsline {subsection}{\numberline {6.3}Improvements}{10}{subsection.6.3}
+\contentsline {subsection}{\numberline {6.4}Techniques Learned}{10}{subsection.6.4}
+\contentsline {section}{References}{10}{subsection.6.4}
