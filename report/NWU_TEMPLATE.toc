@@ -1,5 +1,6 @@
 \contentsline {section}{\numberline {1}Introduction}{1}{section.1}
 \contentsline {section}{\numberline {2}Background}{1}{section.2}
+<<<<<<< HEAD
 \contentsline {section}{\numberline {3}Front-end}{1}{section.3}
 \contentsline {subsection}{\numberline {3.1}Login and Register Interface}{1}{subsection.3.1}
 \contentsline {subsection}{\numberline {3.2}Student Interface}{2}{subsection.3.2}
@@ -17,3 +18,17 @@
 \contentsline {subsection}{\numberline {6.3}Improvements}{10}{subsection.6.3}
 \contentsline {subsection}{\numberline {6.4}Techniques Learned}{10}{subsection.6.4}
 \contentsline {section}{References}{10}{subsection.6.4}
+=======
+\contentsline {section}{\numberline {3}Database}{1}{section.3}
+\contentsline {section}{\numberline {4}Front-end}{1}{section.4}
+\contentsline {subsection}{\numberline {4.1}Login and Register Interface}{1}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Lecturer Interface}{2}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Student Interface}{5}{subsection.4.3}
+\contentsline {section}{\numberline {5}Back-end}{5}{section.5}
+\contentsline {section}{\numberline {6}Conclusion}{5}{section.6}
+\contentsline {subsection}{\numberline {6.1}Strenghts}{5}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}Flaws}{5}{subsection.6.2}
+\contentsline {subsection}{\numberline {6.3}Improvements}{5}{subsection.6.3}
+\contentsline {subsection}{\numberline {6.4}Techniques Learned}{5}{subsection.6.4}
+\contentsline {section}{References}{5}{subsection.6.4}
+>>>>>>> d2e7d0809bda6cbe08980e1c87ca379bae648c1b
