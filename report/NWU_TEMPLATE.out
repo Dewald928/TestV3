@@ -3,6 +3,9 @@
 \BOOKMARK [2][-]{subsection.2.1}{MySQL}{section.2}% 3
 \BOOKMARK [2][-]{subsection.2.2}{Node.js}{section.2}% 4
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> da0987fdc7b5b40251c15958e1ff95d1879d4f91
 \BOOKMARK [1][-]{section.3}{Database Structure}{}% 5
 \BOOKMARK [1][-]{section.4}{Front-end}{}% 6
 \BOOKMARK [2][-]{subsection.4.1}{Login and Register Interface}{section.4}% 7
@@ -17,6 +20,8 @@
 \BOOKMARK [2][-]{subsection.5.6}{Lessons}{section.5}% 16
 \BOOKMARK [2][-]{subsection.5.7}{Assessments}{section.5}% 17
 \BOOKMARK [2][-]{subsection.5.8}{Grade-book}{section.5}% 18
+<<<<<<< HEAD
+=======
 =======
 \BOOKMARK [2][-]{subsection.2.3}{HTML}{section.2}% 5
 \BOOKMARK [2][-]{subsection.2.4}{CSS}{section.2}% 6
@@ -33,12 +38,9 @@
 \BOOKMARK [2][-]{subsection.5.4}{Assessments}{section.5}% 17
 \BOOKMARK [2][-]{subsection.5.5}{Grade-book}{section.5}% 18
 >>>>>>> 964572605eb935cefc43296bedd5af14ec12e368
+>>>>>>> da0987fdc7b5b40251c15958e1ff95d1879d4f91
 \BOOKMARK [1][-]{section.6}{Conclusion}{}% 19
-<<<<<<< HEAD
-\BOOKMARK [2][-]{subsection.6.1}{Strenghts}{section.6}% 20
-=======
 \BOOKMARK [2][-]{subsection.6.1}{Strengths}{section.6}% 20
->>>>>>> a996558f8669738c04ad45915fcc0079d4103839
 \BOOKMARK [2][-]{subsection.6.2}{Flaws}{section.6}% 21
 \BOOKMARK [2][-]{subsection.6.3}{Improvements}{section.6}% 22
 \BOOKMARK [2][-]{subsection.6.4}{Techniques Learned}{section.6}% 23

@@ -1,7 +1,10 @@
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 >>>>>>> 964572605eb935cefc43296bedd5af14ec12e368
+>>>>>>> da0987fdc7b5b40251c15958e1ff95d1879d4f91
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Database ERD}}{2}{figure.3.1}
 \contentsline {figure}{\numberline {4.1}{\ignorespaces Login page}}{3}{figure.4.1}
 \contentsline {figure}{\numberline {4.2}{\ignorespaces Register page}}{3}{figure.4.2}
@@ -31,6 +34,15 @@
 =======
 \contentsline {figure}{\numberline {5.5}{\ignorespaces Code: Create Lessons}}{10}{figure.5.5}
 \contentsline {figure}{\numberline {5.6}{\ignorespaces Code: Create and Update Marks for Assessments}}{11}{figure.5.6}
+<<<<<<< HEAD
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Code: Local Sign-up}}{12}{figure.5.7}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Code: Local Login}}{13}{figure.5.8}
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Code: Create new course}}{13}{figure.5.9}
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Code: Get Courses}}{14}{figure.5.10}
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Code: Create Lessons}}{15}{figure.5.11}
+\contentsline {figure}{\numberline {5.12}{\ignorespaces Code: Create and Update Marks for Assessments}}{16}{figure.5.12}
+\contentsline {figure}{\numberline {5.13}{\ignorespaces Code: Grade book}}{17}{figure.5.13}
+=======
 \contentsline {figure}{\numberline {5.7}{\ignorespaces Code: Grade book}}{12}{figure.5.7}
 =======
 \contentsline {figure}{\numberline {4.1}{\ignorespaces Login page}}{2}{figure.4.1}
@@ -53,3 +65,4 @@
 \contentsline {figure}{\numberline {5.7}{\ignorespaces Code: Grade book}}{10}{figure.5.7}
 >>>>>>> a996558f8669738c04ad45915fcc0079d4103839
 >>>>>>> 964572605eb935cefc43296bedd5af14ec12e368
+>>>>>>> da0987fdc7b5b40251c15958e1ff95d1879d4f91
