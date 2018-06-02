@@ -372,18 +372,15 @@ function createMaterialPath(courseName){
 	var materialPath = process.cwd() + '/views/material/' + courseName;
 	fs.readdir(materialPath, function (err, files) {
 		if (err) {
-			if (err.code === 'ENOENT') {
-				fs.mkdir(materialPath,(err) => {
-					if (err){
-						console.log('Could not create',materialPath);
-						console.log('Error:',err);
-					}
-					else {
-						console.log('Created',materialPath);
-					}
-				});
-			}
-			else throw err;
+			fs.mkdir(materialPath,(err) => {
+				if (err){
+					console.log('Could not create',materialPath);
+					console.log('Error:',err);
+				}
+				else {
+					console.log('Created',materialPath);
+				}
+			});
 		};
 	});
 	return materialPath;
